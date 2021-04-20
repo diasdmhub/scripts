@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # UPDATE.SH
-# COMPLETE SYSTEM UPDATE SCRIPT
-# CREATES BASIC ALIAS IN CASE THERE ARE NONE
-# by diasdm
+# SCRIPT DE ATUALIZACAO COMPLETA DO SISTEMA
+# CRIACAO DE ALIAS BASICOS CASO NAO EXISTA
+# por Dan
 # v2 - 20200501
 # v1 - 20200428
 
@@ -75,10 +75,10 @@ fi
 
 echo -e "\nUPDATING SYSTEM\n"
         sudo apt-get -y update
-        sudo apt-get -y autoclean
         sudo apt-get -y upgrade
         sudo apt-get -y dist-upgrade
-        sudo apt-get -y autoremove
+        sudo apt-get -y autoremove      #remove not required packages
+        sudo apt-get -y clean           #clean package archive cache
         sudo apt-get -y -f install
 
 
