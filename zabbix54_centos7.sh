@@ -1,4 +1,4 @@
-### ZABBIX INSTALATION FROM SOURCES
+### ZABBIX INSTALATION FROM SOURCES FOR CENTOS 7
 ### https://www.zabbix.com/documentation/current/manual/installation/install
 ### ASSUME A NEW INSTALATION
 #!/bin/bash
