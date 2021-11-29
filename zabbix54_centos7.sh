@@ -55,9 +55,9 @@ mysql_secure_installation
 
 
 ### 004.003 ZABBIX DB SCHEMA - START
-mysql -uzabbix -pzabbix zabbix < database/mysql/schema.sql
-mysql -uzabbix -pzabbix zabbix < database/mysql/images.sql
-mysql -uzabbix -pzabbix zabbix < database/mysql/data.sql
+mysql -uzabbix -pzabbix zabbix < zabbix-5.4.7/database/mysql/schema.sql
+mysql -uzabbix -pzabbix zabbix < zabbix-5.4.7/database/mysql/images.sql
+mysql -uzabbix -pzabbix zabbix < zabbix-5.4.7/database/mysql/data.sql
 ### 004.003 ZABBIX DB SCHEMA - END
 
 ### 004.000 DB MYSQL INSTALL - END
