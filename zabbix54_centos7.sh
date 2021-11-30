@@ -1,6 +1,7 @@
 ### ZABBIX INSTALATION FROM SOURCES FOR CENTOS 7
 ### https://www.zabbix.com/documentation/current/manual/installation/install
-### ASSUME A NEW INSTALATION
+### ASSUME A NEW INSTALATION.
+### IF UPGRADING FROM A PACKAGES INSTALATION, REMOVE ALL ZABBIX PACKAGES FIRST.
 #!/bin/bash
 
 
@@ -12,8 +13,8 @@ yum -y upgrade
 
 
 ### 002.000 ZABBIX DOWNLOAD - START
-wget https://cdn.zabbix.com/zabbix/sources/stable/5.4/zabbix-5.4.7.tar.gz
-tar -zxvf zabbix-5.4.7.tar.gz
+wget https://cdn.zabbix.com/zabbix/sources/stable/5.4/zabbix-5.4.8.tar.gz
+tar -zxvf zabbix-5.4.8.tar.gz
 ### 002.000 ZABBIX DOWNLOAD - END
 
 
@@ -29,7 +30,7 @@ source /etc/profile
 
 ### 004.000 DB - START
 ### https://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/
-### IF YOU ALREADY HAVE A ZABBIX DB, YOU MAY SKIP STEP 004.
+### IF YOU ALREADY HAVE A ZABBIX DB, YOU MAY UPGRADE IT USING ZABBIX SOURCES INSTALTION. FOR THIS, SKIP STEP 004.
 
 ### 004.001 MYSQL INSTALL - START
 rpm -Uvh https://dev.mysql.com/get/mysql80-community-release-el7-4.noarch.rpm
@@ -55,24 +56,24 @@ mysql_secure_installation
 
 
 ### 004.003 ZABBIX DB SCHEMA - START
-mysql -uzabbix -pzabbix zabbix < zabbix-5.4.7/database/mysql/schema.sql
-mysql -uzabbix -pzabbix zabbix < zabbix-5.4.7/database/mysql/images.sql
-mysql -uzabbix -pzabbix zabbix < zabbix-5.4.7/database/mysql/data.sql
+mysql -uzabbix -pzabbix zabbix < zabbix-5.4.8/database/mysql/schema.sql
+mysql -uzabbix -pzabbix zabbix < zabbix-5.4.8/database/mysql/images.sql
+mysql -uzabbix -pzabbix zabbix < zabbix-5.4.8/database/mysql/data.sql
 ### 004.003 ZABBIX DB SCHEMA - END
 
 ### 004.000 DB MYSQL INSTALL - END
 
 
-### 005.000 PHP DEP- ENDENCIES AND APACHE2 INSTALATION - START
+### 005.000 PHP DEPENDENCIES AND APACHE2 INSTALATION - START
 yum install -y http://rpms.remirepo.net/enterprise/remi-release-7.rpm
 yum-config-manager --enable remi-php74
 yum install -y php php-opcache php-mcrypt php-gd php-curl php-mysqlnd php-bcmath php-mbstring php-xml php-ldap
-### 005.000 PHP DEP- ENDENCIES - END
+### 005.000 PHP DEPENDENCIES - END
 
 
-### 006.000 ZABBIX SOURCES DEP- ENDENCIES - START
+### 006.000 ZABBIX SOURCES DEPENDENCIES - START
 yum install -y gcc gcc-c++ mysql-devel libxml2 libxml2-devel net-snmp net-snmp-utils net-snmp-devel libcurl libcurl-devel libssh2-devel openldap-devel libevent libevent-devel
-### 006.000 ZABBIX SOURCES DEP- ENDENCIES - END
+### 006.000 ZABBIX SOURCES DEPENDENCIES - END
 
 
 ### 007.000 ZABBIX USER - START
@@ -82,19 +83,20 @@ useradd --system -g zabbix -d /usr/lib/zabbix -s /sbin/nologin -c "Zabbix Monito
 
 
 ### 008.000 ZABBIX SOURCES INSTALL - START
+### IF YOU DO/DON'T NEED SOME OTHER OPTION, ADD/REMOVE IT TO THE LINE BELLOW. SEE "./configure --help"
 ./configure --enable-server --enable-agent --enable-agent2 --enable-webservice --with-mysql --enable-ipv6 --with-net-snmp --with-libcurl --with-libxml2 --with-openssl --with-ldap --with-ssh2
 make install
 ### 008.000 ZABBIX SOURCES INSTALL - END
 
 
-### 009.000 ZABBIX FRONT- END INSTALL - START
+### 009.000 ZABBIX FRONTEND CONFIGURATION - START
 mkdir /var/www/html/zabbix/
-cp -a zabbix-5.4.7/ui/* /var/www/html/zabbix/
+cp -a zabbix-5.4.8/ui/* /var/www/html/zabbix/
 chown -R zabbix:zabbix /var/www/html/zabbix/
-setsebool -P httpd_can_connect_zabbix on
-setsebool -P httpd_can_network_connect_db on
+setsebool -P httpd_can_connect_zabbix on  # might not work
+setsebool -P httpd_can_network_connect_db on  # might not work
 nano /etc/selinux/config
-	SELINUX=disabled
+	SELINUX=disabled  # best if you do not need Selinux
 firewall-cmd --zone=public --add-service=http --permanent
 firewall-cmd --add-port={10051/tcp,10050/tcp} --permanent
 
@@ -103,12 +105,11 @@ sed -i 's|max_execution_time = 30|max_execution_time = 300|' /etc/php.ini
 sed -i 's|max_input_time = 60|max_input_time = 300|' /etc/php.ini
 
 systemctl enable httpd
-systemctl restart httpd
 reboot
-### 009.000 ZABBIX FRONT- END INSTALL - END
+### 009.000 ZABBIX FRONTEND CONFIGURATION - END
 
 
-### ZABBIX SERVER SERVICE CONFIGURATION FOR SYSTEMD - START
+### 010.000 ZABBIX SERVER SERVICE CONFIGURATION FOR SYSTEMD - START
 nano /usr/lib/systemd/system/zabbix-server.service
 	[Unit]
 	Description=Zabbix Server from Sources
@@ -129,10 +130,10 @@ nano /usr/lib/systemd/system/zabbix-server.service
 
 	[Install]
 	WantedBy=multi-user.target
-### ZABBIX SERVER SERVICE CONFIGURATION FOR SYSTEMD - END
+### 010.000 ZABBIX SERVER SERVICE CONFIGURATION FOR SYSTEMD - END
 
 
-### ZABBIX AGENT SERVICE CONFIGURATION FOR SYSTEMD - START
+### 011.000 ZABBIX AGENT SERVICE CONFIGURATION FOR SYSTEMD - START
 nano /usr/lib/systemd/system/zabbix-agent.service
 	[Unit]
 	Description=Zabbix Agent from Sources
@@ -153,19 +154,18 @@ nano /usr/lib/systemd/system/zabbix-agent.service
 
 	[Install]
 	WantedBy=multi-user.target
-### ZABBIX AGENT SERVICE CONFIGURATION FOR SYSTEMD - END
+### 011.000 ZABBIX AGENT SERVICE CONFIGURATION FOR SYSTEMD - END
 
 
-### ZABBIX CONFIGURATION - START
+### 012.000 ZABBIX CONFIGURATION - START
 systemctl daemon-reload
 nano /usr/local/etc/zabbix_server.conf
 nano /usr/local/etc/zabbix_agentd.conf
 systemctl enable zabbix-server zabbix-agent
 systemctl start zabbix-server zabbix-agent
-### ZABBIX CONFIGURATION - END
+### 012.000 ZABBIX CONFIGURATION - END
 
 
 ### DOWNLOAD FRONTEND CONFIG IF IT FAILS THEN COPY IT TO YOUR SERVER - START
 mv ~/zabbix.conf.php /var/www/html/zabbix/conf/zabbix.conf.php
 systemctl restart httpd
-### DOWNLOAD FRONTEND CONFIG IF IT FAILS THEN COPY IT TO YOUR SERVER - END
