@@ -61,7 +61,7 @@ mysql -uzabbix -pzabbix zabbix < zabbix-5.4.8/database/mysql/images.sql
 mysql -uzabbix -pzabbix zabbix < zabbix-5.4.8/database/mysql/data.sql
 ### 004.003 ZABBIX DB SCHEMA - END
 
-### 004.000 DB MYSQL INSTALL - END
+### 004.000 DB - END
 
 
 ### 005.000 PHP DEPENDENCIES AND APACHE2 INSTALATION - START
@@ -169,3 +169,4 @@ systemctl start zabbix-server zabbix-agent
 ### DOWNLOAD FRONTEND CONFIG IF IT FAILS THEN COPY IT TO YOUR SERVER - START
 mv ~/zabbix.conf.php /var/www/html/zabbix/conf/zabbix.conf.php
 systemctl restart httpd
+### DOWNLOAD FRONTEND CONFIG IF IT FAILS THEN COPY IT TO YOUR SERVER - END
