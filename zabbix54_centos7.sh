@@ -11,7 +11,7 @@
 
 
 ### 001.000 OS ENVIROMENT - START
-yum install -y epel-release yum-utils nano wget
+yum install -y epel-release yum-utils nano wget tcpdump netcat net-tools traceroute
 yum clean all
 yum -y upgrade
 ### 001.000 OS ENVIROMENT - END
