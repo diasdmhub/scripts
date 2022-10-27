@@ -49,11 +49,10 @@ for IP in "${SRVARRAY[@]}"; do
 			ssh-copy-id \
 			-i "$PUBKEY" \
 			-o StrictHostKeyChecking=no \
-			"${RMTUSER}@${IP}" > /dev/null
+			"${RMTUSER}@${IP}"
 
 	[ "$?" -eq "0" ] && printf "OK - $IP\n\n" || printf "\nFAIL! - $IP\n\n"
 done
 
 echo -e "\n\n"
-
 exit 0
