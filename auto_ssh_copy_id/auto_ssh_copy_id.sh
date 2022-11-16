@@ -10,8 +10,6 @@ echo -e "\n"
 
 	# 001 - VAR SETUP IF ARGUMENTS ARE PASSED
 LOCUSER="$1"    # LOCAL USER FOR REMOTE ACCESS
-USERHOME=$(getent passwd $LOCUSER | cut -d: -f6)
-
 RMTUSER="$2"    # REMOTE USER
 PASSWD="$3"     # SITE PASSWORD
 SRVLIST="$4"	# HOST LIST FILE PATH
@@ -20,9 +18,10 @@ PUBKEY="$5"	# PUBLIC KEY FILE PATH
 
 	# 002 - VAR SETUP IF NO ARGUMENTS ARE SET
 [ -z ${LOCUSER} ] && read -p "LOCAL USER FOR REMOTE ACCESS: " LOCUSER
+USERHOME=$(getent passwd "$LOCUSER" | cut -d: -f6)
 
 	# 002.001 - EXIT IF LOCAL USER IS NOT FOUND
-[ $(id -nu $LOCUSER 2> /dev/null) ] || { printf "\t# 002.001 \"$LOCUSER\" LOCAL USER NOT FOUND\n\n" ; exit 1 ; }
+[ $(id -nu "$LOCUSER" 2> /dev/null) ] || { printf "\t# 002.001 \"$LOCUSER\" LOCAL USER NOT FOUND\n\n" ; exit 1 ; }
 
 [ -z ${RMTUSER} ] && read -p "REMOTE USER: " RMTUSER
 [ -z ${PASSWD} ]  && read -p "REMOTE USER PASSWORD: " PASSWD
@@ -32,7 +31,7 @@ PUBKEY="$5"	# PUBLIC KEY FILE PATH
      [ -z ${SRVLIST} ] && { printf "\tDefault list set\n\n" ; SRVLIST="hostlist.txt" ; }
 
 	# 002.003 - EXIT IF HOST LIST FILE DOES NOT EXIST
-[ -f $SRVLIST ] && SRVARRAY=( $(cat $SRVLIST) ) \
+[ -f "$SRVLIST" ] && SRVARRAY=( $(cat $SRVLIST) ) \
 	|| { printf "\n\t# 002.003 - $SRVLIST NOT FOUND! PLEASE CHECK YOUR FILE LIST\n\n"; exit 2 ; }
 
 	# 002.004 - VAR SETUP FOR PUB KEY IF NOT SET AS ARGUMENT
@@ -40,7 +39,7 @@ PUBKEY="$5"	# PUBLIC KEY FILE PATH
      [ -z ${PUBKEY} ] && { printf "\tDefault key set\n\n" ; PUBKEY="$USERHOME/.ssh/id_rsa.pub" ; }
 
 	# 002.005 - EXIT IF PUBLIC KEY DOES NOT EXIST FOR LOCAL USER
-[ -f $PUBKEY ] || { printf "\n\t# 002.005 - $PUBKEY NOT FOUND! PLEASE CHECK PUB KEY NAME\n\n"; exit 3 ; }
+[ -f "$PUBKEY" ] || { printf "\n\t# 002.005 - $PUBKEY NOT FOUND! PLEASE CHECK PUB KEY NAME\n\n"; exit 3 ; }
 
 
 	# 003 - MAIN LOOP OPERATION - SEND PUB KEY
