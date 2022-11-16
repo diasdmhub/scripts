@@ -23,7 +23,7 @@
 <BR>
 
   
-## REQUIREMENTS :a:
+## REQUIREMENTS
 - **`sshpass`** package
   - **APT** - `apt install sshpass`
   - **DNF** - `dnf install sshpass`
