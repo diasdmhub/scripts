@@ -14,7 +14,7 @@
 <BR>
 
 ## REQUIREMENTS
-- _**`Dig`**_ tool
+- :pick: _**`Dig`**_ tool
   - If using **APT**: `apt install dnsutils`
   - If using **YUM / DNF**: `dnf install bind-utils`
 <BR>
