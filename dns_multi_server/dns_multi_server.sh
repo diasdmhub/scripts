@@ -1,12 +1,17 @@
 #!/bin/bash
-# TEST A DNS SERVER LIST AGAINST A DOMANIN NAME
+# TEST A DNS SERVER LIST AGAINST A DOMAIN NAME
 # by Diasdm
+# Syntax: ./dns_multi_server.sh [domain] [dnslist path]
 
 # EITHER PASS DOMAIN NAME AS ARGUMENT OR ASK FOR IT
+echo -e "\n"
 domain=$1
 [ -z $domain ] && read -p "DOMAIN NAME: " domain
 
-dnslist="./dnslist"  # PATH TO DNS SERVER LIST
+# PATH TO DNS SERVER LIST. IF NOT SET, USE DEFAULT
+dnslist=$2
+[ -z $dnslist ] && read -p "DNS LIST PATH (default = './dnslist'): " dnslist
+[ -z $dnslist ] && dnslist="./dnslist"
 
 # QUERY FUNCTION USING DIG
 query(){
@@ -14,6 +19,7 @@ query(){
 }
 
 # MAIN LOOP
+echo -e "\n"
 for dnsserver in $(cat "$dnslist"); do
         result="OK"
         IPADD=$(query $dnsserver $domain)
@@ -23,4 +29,5 @@ for dnsserver in $(cat "$dnslist"); do
 
         echo "$result   > Nameserver: $dnsserver - Domain: $domain - IP answer: $IPADD"
 done
+echo -e "\n"
 exit 0
