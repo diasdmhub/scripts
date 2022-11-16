@@ -6,7 +6,7 @@
 
 ## USAGE
 - Set up a list of hosts you wish to connect via SSH.
-  - By default, host list uses the **`./hostlist.txt`** file
+  - By default, the host list uses the **`./hostlist.txt`** file
 - The list must use an IP address or domain name
 
 #### List example:
@@ -78,6 +78,4 @@ Now try logging into the machine, with:   "ssh -o 'StrictHostKeyChecking=no' 'ro
 and check to make sure that only the key(s) you wanted were added.
 
 OK - 192.168.7.10
-OK - 192.168.7.11
-OK - 192.168.7.12
 ```
