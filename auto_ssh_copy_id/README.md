@@ -5,9 +5,10 @@
 <BR>
 
 ## USAGE
-- Set up a list of hosts you wish to connect via SSH.
+- [X] All remote hosts in the list must use the same user and password :warning:
+- [X] Set up a list of hosts you wish to connect via SSH.
   - By default, the host list uses the **`./hostlist.txt`** file
-- The list must use an IP address or domain name
+- [X] The list must use an IP address or domain name
 
 #### List example:
 ```
@@ -22,7 +23,7 @@
 <BR>
 
   
-## REQUIREMENTS
+## REQUIREMENTS :a:
 - **`sshpass`** package
   - **APT** - `apt install sshpass`
   - **DNF** - `dnf install sshpass`
