@@ -39,13 +39,13 @@
 
 
 ## SYNTAX
+> Pass arguments at command line
 ```bash
-# PASS ARGUMENTS AT COMMAND LINE
   ./auto_ssh_copy_id.sh [local user] [remote user] [remote pass] [path to host list] [path to local pub key]
 ```
 **OR**
+> Pass arguments interactively
 ```bash
-# PASS ARGUMENTS INTERACTIVELY
   $ /home/dan/github/scripts/auto_ssh_copy_id/auto_ssh_copy_id.sh
 LOCAL USER FOR REMOTE ACCESS: [local user]
 REMOTE USER: [remote user]
