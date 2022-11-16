@@ -1,6 +1,8 @@
-# DNS Multi Server script
-**TEST A DNS SERVER LIST AGAINST A DOMAIN NAME**
-<BR><BR>
+<h1 align="center">DNS Multi Server script</h1>
+<p align="center">
+<b>TEST A DNS SERVER LIST AGAINST A DOMAIN NAME</b>
+</p>
+<BR>
 
 
 ## USAGE
