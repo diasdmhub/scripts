@@ -1,0 +1,26 @@
+- name: Update using APT
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+    update_cache: yes
+    autoremove: yes
+  when: ansible_pkg_mgr == "apt"
+
+- name: Update using DNF
+  ansible.builtin.dnf:
+    name: "*"
+    state: latest
+    update_cache: yes
+  when: ansible_pkg_mgr == "dnf"
+
+- name: Autoremove using DNF
+  ansible.builtin.dnf:
+    autoremove: yes
+  when: ansible_pkg_mgr == "dnf"
+
+- name: Update using YUM
+  ansible.builtin.yum:
+    name: "*"
+    state: latest
+    update_cache: yes
+  when: ansible_pkg_mgr == "yum"
