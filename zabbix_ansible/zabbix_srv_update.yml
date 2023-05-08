@@ -1,0 +1,192 @@
+---
+# ZABBIX SERVER UPDATE WITH ANSIBLE
+# by diasdm
+
+- name: Zabbix Server data
+  hosts: "{{ var_host | default('zabbix_proxmox') }}"
+  gather_facts: false
+  become: yes
+
+  # STOPS IF ZABBIX SERVER IS NOT INSTALLED
+  tasks:
+    - name: Fetch Zabbix Server version before start
+      ansible.builtin.shell:
+        cmd: zabbix_server -V | grep "zabbix_server" | cut -d' ' -f3
+      register: zabbix_server_ver_old
+      failed_when: zabbix_server_ver_old.stderr
+
+
+- name: Update OS by importing ./update_play.yml playbook
+  import_playbook: update_play.yml
+  vars:
+    var_host: "{{ var_host | default('zabbix_proxmox') }}"
+
+
+- name: Update Zabbix Server configuration file if changed
+  hosts: "{{ var_host | default('zabbix_proxmox') }}"
+  gather_facts: false
+  become: yes
+  vars:
+    - zbx_srv_service: zabbix-server
+    - zbx_dir: /etc/zabbix
+    - zbx_conf: "{{ zbx_dir }}/zabbix_server.conf"
+    - zbx_custom_dir: "{{ zbx_conf }}.d"
+    - zbx_num: "{{ ansible_facts.hostname | regex_search('\\d+$') }}"
+    - zbx_hostname: "{{ ansible_facts.hostname }}"
+    - zbx_front_add: zbxfront
+    - zbx_dbuser: zabbix{{ zbx_num }}
+    - zbx_dbhost: zbxdb
+    - zbx_dbname: "{{ dbname | default('zabbix') }}"
+    - zbx_dbpass: "{{ dbpass | default('zabbix') }}"
+    - cur_date: "{{ ansible_date_time.year }}{{ ansible_date_time.month }}{{ ansible_date_time.day }}"
+
+  tasks:
+    - name: Check if Zabbix Server configuration file exists
+      ansible.builtin.stat:
+        path: "{{ zbx_conf }}"
+      register: conf_exist
+      failed_when: not conf_exist.stat.exists
+
+
+    - name: Check if there is a new configuration file
+      ansible.builtin.stat:
+        path: "{{ zbx_conf }}.rpmnew"
+      register: rpmnew
+
+
+    - name: Stop if there is no new configuration file
+      ansible.builtin.fail:
+        msg: |
+          {{ zbx_conf }}.rpmnew does not exist. No changes are necessary.
+          Playbook FINISHED!
+      when: not rpmnew.stat.exists
+
+
+    - name: Make sure {{ zbx_conf }}.rpmnew has correct permissions
+      ansible.builtin.file:
+        path: "{{ zbx_conf }}.rpmnew"
+        owner: zabbix
+        group: zabbix
+        mode: u=rw,go=r
+      when: rpmnew.stat.exists
+
+
+    - name: Change {{ zbx_conf }}.rpmnew basic parameters
+      ansible.builtin.replace:
+        path: "{{ zbx_conf }}.rpmnew"
+        regexp: "{{ item.regex }}"
+        replace: "{{ item.replace }}"
+      loop:
+        - { regex: '^LogFileSize=0$', replace: 'LogFileSize=10' }
+        - { regex: '^DBName=zabbix$', replace: '# DBName=zabbix' }
+        - { regex: '^DBUser=zabbix$', replace: '# DBUser=zabbix' }
+        - { regex: '^# Include=/usr/local/etc/zabbix_server.conf.d/\*\.conf$', replace: 'Include=/etc/zabbix/zabbix_server.conf.d/*.conf' }
+      when: rpmnew.stat.exists
+
+
+    - name: Create Zabbix custom directory if it does not exist
+      ansible.builtin.file:
+        path: "{{ zbx_custom_dir }}"
+        state: directory
+        owner: zabbix
+        group: zabbix
+        mode: '0755'
+
+
+    - name: Check if there is a custom configuration file
+      ansible.builtin.stat:
+        path: "{{ zbx_custom_dir }}/zabbix_server_custom.conf"
+      register: custom_file
+
+
+    - name: Save basic custom configuration file
+      ansible.builtin.copy:
+        dest: "{{ zbx_custom_dir }}/zabbix_server_custom.conf"
+        content: |                  # CHANGE IF NEEDED
+          # ZABBIX SERVER BASIC CUSTOM CONFIGURATION
+          # by Diasdm - https://github.com/diasdmhub
+          DBHost={{ zbx_dbhost }}
+          DBName={{ zbx_dbname }}
+          DBUser={{ zbx_dbuser }}
+          DBPassword={{ zbx_dbpass }}
+          StartIPMIPollers=1
+          StartVMwareCollectors=1
+          StartSNMPTrapper=1
+          StartReportWriters=1
+          WebServiceURL=http://{{ zbx_front_add }}:10053/report
+          HANodeName={{ zbx_hostname }}
+          NodeAddress={{ zbx_hostname }}:10051
+      when: not custom_file.stat.exists
+
+
+    - name: Find old configuration backup file
+      ansible.builtin.find:
+        paths: "{{ zbx_dir }}"
+        patterns: "*server*.bkp"
+      register: zbx_conf_old_bkp
+
+
+    - name: Delete old configuration backup file
+      ansible.builtin.file:
+        path: "{{ item['path'] }}"
+        state: absent
+      when: zbx_conf_old_bkp.matched > 0
+      loop: "{{ zbx_conf_old_bkp.files }}"
+
+
+    - name: Backup previous configuration file
+      ansible.builtin.copy:
+        src: "{{ zbx_conf }}"
+        dest: "{{ zbx_conf }}.{{ cur_date }}.bkp"
+        remote_src: yes
+
+
+    - name: Copy {{ zbx_conf }}.rpmnew file to main configuration
+      ansible.builtin.copy:
+        src: "{{ zbx_conf }}.rpmnew"
+        dest: "{{ zbx_conf }}"
+        remote_src: yes
+      when: rpmnew.stat.exists
+      notify:
+        - Restart {{ zbx_srv_service }} service
+
+
+    - name: Make sure Zabbix main directory belongs to Zabbix
+      ansible.builtin.file:
+        path: "{{ zbx_dir }}"
+        owner: zabbix
+        group: zabbix
+        mode: u=rw,go=r,a-x+X
+        recurse: true
+      notify:
+        - Delete {{ zbx_conf }}.rpmnew file
+
+
+    - name: Fetch Zabbix Server current version
+      ansible.builtin.shell:
+        cmd: zabbix_server -V | grep "zabbix_server" | cut -d' ' -f3
+      register: zabbix_server_ver
+      notify:
+        - Display Zabbix Server current version
+
+
+  handlers:
+    - name: Restart {{ zbx_srv_service }} service
+      ansible.builtin.service:
+        name: "{{ zbx_srv_service }}"
+        state: restarted
+
+
+    - name: Delete {{ zbx_conf }}.rpmnew file
+      ansible.builtin.file:
+        path: "{{ zbx_conf }}.rpmnew"
+        state: absent
+
+
+    - name: Display Zabbix Server current version
+      ansible.builtin.debug:
+        msg: |
+          PLAYBOOK FINISHED
+          ZABBIX SERVER UPDATED
+          Zabbix Server version before update: {{ zabbix_server_ver_old.stdout }}
+          Zabbix Server version after update: {{ zabbix_server_ver.stdout }}

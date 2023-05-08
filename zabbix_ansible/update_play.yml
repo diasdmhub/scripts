@@ -1,0 +1,10 @@
+# EXAMPLE:
+# ansible-playbook -i inventory.ini update_pkg.yml --extra-vars="var_host=vms"
+
+- name: Host full update
+  hosts: "{{ var_host | default('main') }}"
+  become: yes
+
+  tasks:
+    - name: Update task
+      import_tasks: tasks/update_pkg.yml
