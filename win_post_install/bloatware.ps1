@@ -1,0 +1,58 @@
+# WINDOWS POST INSTALLATION SCRIPT
+# REMOVE DEFAULT BLOATWARE APPLICATIONS
+# by diasdm
+
+$bloatware = @(
+    "ActiproSoftwareLLC"
+    "AdobeSystemsIncorporated.AdobePhotoshopExpress"
+    "BingNews"
+    "BubbleWitch3Saga"
+    "CandyCrush"
+    "Duolingo"
+    "EclipseManager"
+    "Facebook"
+    "Flipboard"
+    "GetHelp"
+    "Getstarted"
+    "Messaging"
+    "Microsoft3DViewer"
+    "MicrosoftOfficeHub"
+    "MicrosoftSolitaireCollection"
+    "Minecraft"
+    "MixedReality"
+    "News"
+    "Office.Lens"
+    "Office.OneNote"
+    "Office.Sway"
+    "Office.Todo.List"
+    "OneConnect"
+    "PandoraMediaInc"
+    "Microsoft.People"
+	"OneDrive"
+    "Print3D"
+    "Royal Revolt"
+    "SkypeApp"
+    "Speed Test"
+    "Spotify"
+    "Sway"
+    "Twitter"
+	"Wallet"
+    "Weather"
+    "Whiteboard"
+    "windowscommunicationsapps"
+    "WindowsFeedbackHub"
+    "WindowsMaps"
+    "Wunderlist"
+    "Xbox.TCUI"
+    "XboxApp"
+    "XboxGameOverlay"
+    "XboxIdentityProvider"
+    "XboxSpeechToTextOverlay"
+	"YourPhone"
+    "ZuneMusic"
+    "ZuneVideo"
+    )
+
+foreach ($bloat in $bloatware) {
+    Get-AppxPackage -AllUsers -Name *$bloat* | Remove-AppxPackage
+}
