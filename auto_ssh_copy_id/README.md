@@ -4,6 +4,10 @@
 </p>
 <BR>
 
+## DOWNLOAD
+[▶️ auto_ssh_copy_id.sh](https://raw.githubusercontent.com/diasdmhub/scripts/master/auto_ssh_copy_id/auto_ssh_copy_id.sh)
+<BR>
+
 ## USAGE
 - [X] All remote hosts in the list must use the same user and password :warning:
 - [X] Set up a list of hosts you wish to connect via SSH.
