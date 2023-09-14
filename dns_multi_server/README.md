@@ -5,6 +5,11 @@
 <BR>
 
 
+## DOWNLOAD
+[▶️ dns_multi_server.sh](https://raw.githubusercontent.com/diasdmhub/scripts/master/dns_multi_server/dns_multi_server.sh)
+
+<BR>
+
 ## USAGE
 - [X] Set up a list of DNS servers to be tested against a domain name
   - There is an example list in this repository named _`./dnslist`_. It is recommended to set up your own list based on your location and your ISP.
