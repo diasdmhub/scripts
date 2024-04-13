@@ -1,7 +1,7 @@
 #!/bin/bash
 #---------- INFORMATION ------------------------------
 #
-# Script.: deSEC DDNS update script for AsusWRT Router
+# Script.: deSEC DDNS update script for Linux Shell
 # Version: 1
 # Created: 12/04/2024
 # Author.: diasdm
