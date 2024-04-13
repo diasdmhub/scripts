@@ -22,10 +22,10 @@ wanInterface="## YOUR WAN INTERFACE ##"
 desecUpdateUrl="https://update.dedyn.io"
 
 # deSEC online service that returns your IPv4
-ipv4DetectService="https://checkipv4.dedyn.io"
+#ipv4DetectService="https://checkipv4.dedyn.io"
 
 # deSEC online service that returns your IPv6
-ipv6DetectService="https://checkipv6.dedyn.io"
+#ipv6DetectService="https://checkipv6.dedyn.io"
 
 #-----------------------------------------------------
 
