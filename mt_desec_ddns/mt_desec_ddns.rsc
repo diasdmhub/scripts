@@ -66,7 +66,7 @@
 }
 
 
-:log info message="deSEC DDNS: dedyn.io DDNS Update START"
+#:log info message="deSEC DDNS: dedyn.io DDNS Update START"
 
 # Validate WAN interface
 :local valInt [$validadeInt $wanInterface]
@@ -123,4 +123,4 @@
     :log info message="deSEC DDNS: \"$desecDomain\" IPv4 ($domainIPv4) equals to current WAN IPv4 ($currentIPv4) - Update not required"
 }
 
-:log info message="deSEC DDNS: dedyn.io DDNS Update END"
+#:log info message="deSEC DDNS: dedyn.io DDNS Update END"
