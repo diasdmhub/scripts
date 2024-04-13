@@ -10,7 +10,12 @@ A simple yet effective RouterOS script that updates a [**deSEC.io**](https://des
 
 ## DOWNLOAD
 
-[▶️ mt_desec_ddns.rsc](./mt_desec_ddns.rsc)
+[▶️ deSEC DDNS script for Mikrotik RouterOS](./mt_desec_ddns.rsc)
+
+<BR>
+
+> [▶️ deSEC DDNS script for Shell](./desec_ddns.sh) \
+> _Added for future usage. Mainly for limited Linux OS._
 
 <BR>
 
@@ -19,8 +24,13 @@ A simple yet effective RouterOS script that updates a [**deSEC.io**](https://des
 - [X] Mikrotik device that supports scripts
   > The script may require recent RouterOS to work properly. Make sure you have the latest updates installed before you begin.
 - [X] Active DNS domain name at [deSEC.io](https://desec.io).
-  > The deSEC DNS name must have at least an appropriate IPv4 or IPv6 address before the script is run for the first time.
+  > The deSEC DNS name must have at least an appropriate IPv4 or IPv6 address before the script is run.
 - [X] A valid token for the deSEC domain name.
+
+<BR>
+
+> **For Shell**
+> - [ ] `Curl`, `Dig`, `Awk`, `Logger`
 
 <BR>
 
@@ -54,7 +64,7 @@ A simple yet effective RouterOS script that updates a [**deSEC.io**](https://des
 - Add the script source contents using `/system/script/add`.
 
 ```php
-/system/script/add name=deSEC_DDNS policy=test,read source={## COPY THE CONTENTS IN BETWEEN THESE BRACES ##}
+/system/script/add name=deSEC_DDNS policy=test,read source={## COPY THE CONTENTS INBETWEEN THESE BRACES ##}
 ```
 
 <BR>
@@ -76,7 +86,7 @@ A simple yet effective RouterOS script that updates a [**deSEC.io**](https://des
 
 #### **3.** Run the script for the first time to test if the update is successful.
 
-#### **4.** [Create a schedule](https://help.mikrotik.com/docs/display/ROS/Scheduler) to run the script at regular intervals.
+#### **4.** [Create a schedule](https://help.mikrotik.com/docs/display/ROS/Scheduler) to run the script.
 
 #### **5.** Look in the system log for messages from the script. They start with `deSEC DDNS`.
 
@@ -99,7 +109,7 @@ A simple yet effective RouterOS script that updates a [**deSEC.io**](https://des
 
 ⚠️ The script can only update one IP stack at a time. The provided WAN interface must have only one valid IPv4 and one global IPv6.
 
-⚠️ If the DNS name exists, but with no active IP, the script will fail due to a limited `resolve` command from RouterOS. Set the first deSEC's domain IP manually.
+⚠️ If the DNS name exists, but with no appropriate IP, the script will fail due to a limited `resolve` command from RouterOS. Set the first IP manually.
 
 ⚠️ The domain's IPv6 address will not be validated due to a restricted `resolve` command from RouterOS.
 
