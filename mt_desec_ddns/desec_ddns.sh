@@ -13,7 +13,7 @@
 desecDomain="## YOUR DOMAIN NAME ##"
 
 # deSEC DNS Token
-desecToken="2T2fc11Sopk5JPfH1eTy6hjXV3dz"
+desecToken="## DESEC TOKEN ##"
 
 # WAN interface name
 wanInterface="## YOUR WAN INTERFACE ##"
