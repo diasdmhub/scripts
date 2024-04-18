@@ -1,6 +1,7 @@
-# Scripts
-
-Simple scripts for simple tasks.
+<h1 align="center">Scripts</h1>
+<p align="center">
+  <b>Simple scripts for simple tasks.</b>
+</p>
 
 <BR>
 
@@ -16,3 +17,8 @@ Simple scripts for simple tasks.
 
 [▶️ deSEC DDNS](./mt_desec_ddns/)
 > deSEC DDNS update script for Mikrotik RouterOS
+
+<BR>
+
+[▶️ DNS Performance Test](./dnsperftest/)
+> Script to test the performance of the most popular DNS providers
