@@ -1,6 +1,6 @@
 <h1 align="center">DNS Performance Test</h1>
 <p align="center">
-  <b>Shell script to test the performance of the most popular DNS resolvers from your location.</b>
+  <b>Shell script to test the performance of the most popular DNS providers so you can test from your own location</b>
 </p>
 
 <BR>
@@ -10,125 +10,201 @@
 
 <BR>
 
-# Includes by default:
-| Provider | IP |
-| --- | --- |
-* CloudFlare 1.1.1.1
- * Level3 4.2.2.1
- * Google 8.8.8.8
- * Quad9 9.9.9.9
- * Freenom 80.80.80.80
- * OpenDNS
- * Norton
- * CleanBrowsing
- * Yandex
- * AdGuard
- * Neustar
- * Comodo
- * NextDNS
+## DEFAULT DNS LIST
 
-# Required 
+- [X] The list is based on the [**AdGuard DNS providers list**](https://adguard-dns.io/kb/general/dns-providers).
+- [X] It is leaning toward, but not exclusive to, private providers.
+- [X] **It is recommended that you change this list to reflect your preferred providers.**
 
-You need to install bc and dig. 
+| IPv4 DNS Provider | IP 1 | IP 2 | Filter* | Log* |
+| --- | :---: | :---: | :---: | :---: |
+| AdGuard | 94.140.14.140 | 94.140.14.141 | No | Yes |
+| Ali | 223.5.5.5 | 223.6.6.6 | Yes | Yes |
+| BebasDNS | 103.87.68.193 | - | No | No |
+| Cisco OpenDNS | 208.67.222.2 | 208.67.220.2 | Yes | Yes |
+| CleanBrowsing | 185.228.168.168 | 185.228.169.168 | Yes | Yes |
+| CloudFlare | 1.1.1.1 | 1.0.0.1 | No | Yes |
+| Comodo | 8.26.56.26 | 8.20.247.20 | Yes | Yes |
+| ControlD | 76.76.2.0 | 76.76.10.0 | No | Yes |
+| DNS.SB | 185.222.222.222 | 45.11.45.11 | No |  No |
+| DNSPod | 119.29.29.29 | 119.28.28.28 | Yes |  Yes |
+| DNSWatchGO | 54.174.40.213 | 52.3.100.184 | Yes |  Yes |
+| Dyn | 216.146.35.35 | 216.146.36.36 | Yes |  Yes |
+| Freenom | 80.80.80.80 | 80.80.81.81 | Yes |  No |
+| Google | 8.8.8.8 | 8.8.4.4 | No |  Yes |
+| Hurricane Electric | 74.82.42.42 | - | Yes |  Yes |
+| Mullvad | 194.242.2.2 | - | No |  Yes |
+| Neustar | 156.154.70.1 | 156.154.71.1 | No |  Yes |
+| dns0.eu | 193.110.81.0 | 185.253.5.0 | Yes |  Yes |
+| Quad9 | 9.9.9.10 | 149.112.112.10 | No |  Yes |
+| Safe DNS | 195.46.39.39 | 195.46.39.40 | Yes |  Yes |
+| 360 Secure DNS | 101.226.4.6 | 218.30.118.6 | Yes |  Yes |
+| Verisign | 64.6.64.6 | 64.6.65.6 | Yes |  Yes |
+| Safe Surfer | 104.155.237.225 | 104.197.28.121 | Yes |  Yes |
+| CIRA Canadian Shield | 149.112.121.10 | 149.112.122.10 | No |  Yes |
+| Comss.one | 193.17.47.1 | - | Yes |  Yes |
+| CZ.NIC ODVR | 76.76.2.22 | 185.43.135.1 | No |  No |
+| DNS for Family | 94.130.180.225 | 78.47.64.161 | Yes |  Yes |
+| Fondation Restena | 76.76.2.22 | - | No |  Yes |
+| 114DNS | 114.114.114.114 | 114.114.115.115 | Yes |  Yes |
+| LibreDNS | 88.198.92.222 | - | No |  Yes |
+| OpenNIC DNS | 217.160.70.42 | - | No |  Yes |
+| Quad101 | 101.101.101.101 | 101.102.103.104 | No |  No |
+| Yandex | 77.88.8.8 | 77.88.8.1 | No |  Yes |
+| AhaDNS | 5.2.75.75 | 45.67.219.208 | Yes |  No |
+| DNS Forge | 176.9.93.198 | 176.9.1.117 | Yes |  No |
 
-For Ubuntu:
+> _This is a manual list and may not be accurate. \
+> There may be regional providers that are not accessible from everywhere. \
+> Also, the DNS IP of the provider may change depending on the region. \
+> \* These are allegedly non-filtering and non-logging providers. \
+> \* It is considered Yes if not stated otherwise._
 
+<BR>
+
+## DEFAULT DOMAIN LIST
+
+- [X] This list is based on some of the top domains from [**Cloudflare Domain Rankings**](https://radar.cloudflare.com/domains)
+- [X] It is used for testing the DNS providers.
+
+| Domain |
+| :---: |
+| google.com |
+| facebook.com |
+| apple.com |
+| microsoft.com
+| amazon.com |
+| youtube.com |
+| instagram.com |
+| reddit.com |
+| twitter.com |
+| whatsapp.com |
+
+<BR>
+
+## REQUIREMENTS
+
+- ⛏️ **`Dig`** tool
+  - If using **APT**: `apt install dnsutils`
+  - If using **YUM / DNF**: `dnf install bind-utils`
+
+<BR>
+
+## SYNTAX
+
+```bash
+$ ./dnsperftest.sh [IP version]
 ```
- $ sudo apt-get install bc dnsutils
-```
 
-For macOS using homebrew:
+> **`IP version`:**
+> - **`ipv4`** - _(default)_ For IPv4 addresses only
+> - **`ipv6`** - For IPv6 addresses only
+> - **`all`** - For IPv4 and IPv6 addresses
 
-```
- $ brew install bc bind
-```
+<BR>
 
-# Utilization
+## UTILIZATION
 
+**1\.** Download the script and save it on your test system.
 ``` 
- $ git clone --depth=1 https://github.com/cleanbrowsing/dnsperftest/
- $ cd dnsperftest
- $ bash ./dnstest.sh 
-               test1   test2   test3   test4   test5   test6   test7   test8   test9   test10  Average 
-cloudflare     1 ms    1 ms    1 ms    2 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms      1.10
-google         22 ms   1 ms    4 ms    24 ms   1 ms    19 ms   3 ms    56 ms   21 ms   21 ms     17.20
-quad9          10 ms   19 ms   10 ms   10 ms   10 ms   10 ms   10 ms   10 ms   10 ms   55 ms     15.40
-opendns        39 ms   2 ms    2 ms    20 ms   2 ms    72 ms   2 ms    39 ms   39 ms   3 ms      22.00
-norton         2 ms    2 ms    2 ms    2 ms    1 ms    2 ms    2 ms    1 ms    2 ms    2 ms      1.80
-cleanbrowsing  11 ms   14 ms   11 ms   11 ms   10 ms   10 ms   11 ms   36 ms   11 ms   13 ms     13.80
-yandex         175 ms  209 ms  175 ms  181 ms  188 ms  179 ms  178 ms  179 ms  177 ms  208 ms    184.90
-adguard        200 ms  200 ms  200 ms  199 ms  202 ms  200 ms  202 ms  200 ms  199 ms  248 ms    205.00
-neustar        2 ms    2 ms    2 ms    2 ms    1 ms    2 ms    2 ms    2 ms    2 ms    2 ms      1.90
-comodo         21 ms   22 ms   22 ms   22 ms   22 ms   22 ms   22 ms   21 ms   22 ms   24 ms     22.00
+wget -q https://raw.githubusercontent.com/diasdmhub/scripts/master/dnsperftest/dnsperftest.sh
 ```
 
-To sort with the fastest first, add `sort -k 22 -n` at the end of the command:
-
+**2\.** Give the script execution permission.
 ```
-  $ bash ./dnstest.sh |sort -k 22 -n
-               test1   test2   test3   test4   test5   test6   test7   test8   test9   test10  Average 
-cloudflare     1 ms    1 ms    1 ms    4 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms      1.30
-norton         2 ms    2 ms    2 ms    2 ms    2 ms    2 ms    2 ms    2 ms    2 ms    2 ms      2.00
-neustar        2 ms    2 ms    2 ms    2 ms    1 ms    2 ms    2 ms    2 ms    2 ms    22 ms     3.90
-cleanbrowsing  11 ms   23 ms   11 ms   11 ms   11 ms   11 ms   11 ms   13 ms   12 ms   11 ms     12.50
-google         4 ms    4 ms    3 ms    21 ms   21 ms   61 ms   3 ms    21 ms   21 ms   22 ms     18.10
-opendns        2 ms    2 ms    2 ms    39 ms   2 ms    75 ms   2 ms    21 ms   39 ms   13 ms     19.70
-comodo         22 ms   23 ms   22 ms   22 ms   22 ms   22 ms   22 ms   22 ms   22 ms   23 ms     22.20
-quad9          10 ms   37 ms   10 ms   10 ms   10 ms   145 ms  10 ms   10 ms   10 ms   20 ms     27.20
-yandex         177 ms  216 ms  178 ms  182 ms  186 ms  177 ms  183 ms  174 ms  186 ms  222 ms    188.10
-adguard        199 ms  210 ms  200 ms  201 ms  202 ms  202 ms  199 ms  200 ms  198 ms  201 ms    201.20
+chmox +x dnsperftest.sh
 ```
 
-To test using the IPv6 addresses, add the IPv6 option:
-
+**3\.** Run the script. If no arguments are given, it uses `ipv4` as the default argument.
 ```
-  $ bash ./dnstest.sh ipv6| sort -k 22 -n
-                     test1   test2   test3   test4   test5   test6   test7   test8   test9   test10  Average 
-cleanbrowsing-v6     1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms      1.00
-cloudflare-v6        1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    5 ms    1 ms    1 ms    1 ms      1.40
-quad9-v6             1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    21 ms     3.00
-8.8.8.8              7 ms    1 ms    16 ms   1 ms    1 ms    24 ms   1 ms    8 ms    1 ms    7 ms      6.70
-neustar-v6           1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    60 ms     6.90
-opendns-v6           1 ms    1 ms    1 ms    1 ms    1 ms    62 ms   1 ms    1 ms    29 ms   1 ms      9.90
-google-v6            8 ms    8 ms    7 ms    8 ms    14 ms   67 ms   1 ms    7 ms    8 ms    61 ms     18.90
-adguard-v6           52 ms   55 ms   52 ms   53 ms   52 ms   56 ms   52 ms   55 ms   52 ms   57 ms     53.60
-yandex-v6            177 ms  178 ms  178 ms  179 ms  179 ms  178 ms  179 ms  178 ms  178 ms  223 ms    182.70
+./dnsperftest.sh
 ```
 
-To test both IPv6 and IPv4, add the "all" option:
+> **You can sort the result by piping it to `sort` as in the example below.**
+
+<BR>
+
+## EXAMPLE
 ```
-  $ bash ./dnstest.sh all| sort -k 22 -n
-                     test1   test2   test3   test4   test5   test6   test7   test8   test9   test10  Average 
-cleanbrowsing        1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms      1.00
-cleanbrowsing-v6     1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms      1.00
-cloudflare-v6        1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms      1.00
-neustar              1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms      1.00
-nextdns              1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms      1.00
-quad9-v6             1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms      1.00
-cloudflare           1 ms    1 ms    1 ms    1 ms    1 ms    2 ms    1 ms    1 ms    1 ms    1 ms      1.10
-quad9                1 ms    1 ms    1 ms    2 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms      1.10
-google               1 ms    1 ms    6 ms    1 ms    1 ms    6 ms    1 ms    7 ms    9 ms    7 ms      4.00
-8.8.8.8              6 ms    1 ms    25 ms   1 ms    1 ms    6 ms    1 ms    7 ms    1 ms    7 ms      5.60
-neustar-v6           1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    1 ms    64 ms     7.30
-opendns-v6           7 ms    1 ms    21 ms   8 ms    1 ms    1 ms    1 ms    6 ms    1 ms    29 ms     7.60
-opendns              1 ms    1 ms    27 ms   27 ms   1 ms    67 ms   1 ms    6 ms    1 ms    27 ms     15.90
-comodo               1 ms    1 ms    1 ms    1 ms    4 ms    1 ms    1 ms    1 ms    1 ms    150 ms    16.20
-google-v6            7 ms    6 ms    33 ms   7 ms    7 ms    87 ms   7 ms    8 ms    8 ms    25 ms     19.50
-level3               27 ms   26 ms   25 ms   27 ms   27 ms   25 ms   27 ms   27 ms   25 ms   28 ms     26.40
-norton               28 ms   26 ms   28 ms   26 ms   26 ms   28 ms   27 ms   27 ms   27 ms   27 ms     27.00
-adguard-v6           52 ms   54 ms   55 ms   56 ms   52 ms   52 ms   52 ms   53 ms   53 ms   54 ms     53.30
-adguard              58 ms   58 ms   58 ms   58 ms   60 ms   58 ms   60 ms   60 ms   58 ms   60 ms     58.80
-freenom              140 ms  140 ms  140 ms  145 ms  135 ms  140 ms  140 ms  140 ms  140 ms  134 ms    139.40
-yandex-v6            178 ms  179 ms  178 ms  179 ms  178 ms  178 ms  178 ms  179 ms  179 ms  205 ms    181.10
-yandex               178 ms  178 ms  177 ms  179 ms  178 ms  174 ms  180 ms  178 ms  179 ms  222 ms    182.30
+# /jffs/scripts/dnsperftest.sh | sort -k 23 -n
 
+                                           test1   test2   test3   test4   test5   test6   test7   test8   test9   test10  Average
+SafeDNS               195.46.39.40         18 ms   18 ms   17 ms   17 ms   16 ms   18 ms   18 ms   17 ms   18 ms   17 ms   17.40 ms
+Neustar               156.154.70.1         16 ms   17 ms   18 ms   19 ms   18 ms   18 ms   17 ms   18 ms   17 ms   21 ms   17.90 ms
+Verisign              64.6.64.6            18 ms   20 ms   19 ms   17 ms   19 ms   19 ms   17 ms   19 ms   16 ms   19 ms   18.30 ms
+Dyn                   216.146.36.36        19 ms   18 ms   18 ms   17 ms   19 ms   18 ms   20 ms   22 ms   17 ms   20 ms   18.80 ms
+CloudFlare            1.1.1.1              19 ms   16 ms   21 ms   17 ms   22 ms   20 ms   20 ms   17 ms   19 ms   20 ms   19.10 ms
+AdGuard               94.140.14.141        21 ms   18 ms   20 ms   21 ms   20 ms   19 ms   18 ms   17 ms   21 ms   17 ms   19.20 ms
+Neustar               156.154.71.1         19 ms   17 ms   19 ms   19 ms   19 ms   18 ms   21 ms   21 ms   21 ms   18 ms   19.20 ms
+Verisign              64.6.65.6            18 ms   18 ms   21 ms   19 ms   19 ms   23 ms   21 ms   22 ms   21 ms   21 ms   20.30 ms
+CloudFlare            1.0.0.1              21 ms   19 ms   21 ms   20 ms   16 ms   26 ms   25 ms   21 ms   19 ms   19 ms   20.70 ms
+CleanBrowsing         185.228.168.168      19 ms   20 ms   28 ms   21 ms   19 ms   20 ms   20 ms   21 ms   20 ms   20 ms   20.80 ms
+ControlD              76.76.10.0           23 ms   20 ms   32 ms   19 ms   21 ms   21 ms   21 ms   21 ms   21 ms   22 ms   22.10 ms
+ControlD              76.76.2.0            21 ms   22 ms   25 ms   22 ms   22 ms   22 ms   24 ms   22 ms   21 ms   23 ms   22.40 ms
+FondationRestena      76.76.2.22           138 ms  20 ms   17 ms   21 ms   18 ms   20 ms   17 ms   18 ms   17 ms   18 ms   30.40 ms
+Quad9                 9.9.9.10             18 ms   68 ms   47 ms   32 ms   17 ms   19 ms   21 ms   73 ms   20 ms   18 ms   33.30 ms
+CZ.NICODVR            76.76.2.22           137 ms  17 ms   21 ms   18 ms   19 ms   20 ms   17 ms   70 ms   19 ms   24 ms   36.20 ms
+CiscoOpenDNS          208.67.222.2         22 ms   17 ms   23 ms   129 ms  21 ms   19 ms   19 ms   71 ms   21 ms   20 ms   36.20 ms
+Google                8.8.4.4              19 ms   20 ms   24 ms   20 ms   21 ms   135 ms  17 ms   67 ms   23 ms   23 ms   36.90 ms
+SafeDNS               195.46.39.39         17 ms   19 ms   19 ms   19 ms   25 ms   20 ms   16 ms   135 ms  18 ms   140 ms  42.80 ms
+Quad9                 149.112.112.10       17 ms   258 ms  19 ms   33 ms   20 ms   20 ms   31 ms   19 ms   18 ms   16 ms   45.10 ms
+[/etc/resolv.conf]    127.0.0.1            1 ms    64 ms   128 ms  64 ms   24 ms   23 ms   67 ms   76 ms   1 ms    24 ms   47.20 ms
+CiscoOpenDNS          208.67.220.2         75 ms   18 ms   23 ms   124 ms  19 ms   22 ms   21 ms   76 ms   72 ms   26 ms   47.60 ms
+Dyn                   216.146.35.35        19 ms   18 ms   17 ms   16 ms   1000 ms 17 ms   17 ms   132 ms  17 ms   19 ms   127.20 ms
+AdGuard               94.140.14.140        17 ms   21 ms   480 ms  21 ms   668 ms  19 ms   19 ms   19 ms   22 ms   23 ms   130.90 ms
+CleanBrowsing         185.228.169.168      135 ms  139 ms  132 ms  130 ms  129 ms  129 ms  134 ms  132 ms  134 ms  136 ms  133.00 ms
+HurricaneElectric     74.82.42.42          130 ms  130 ms  154 ms  127 ms  132 ms  129 ms  128 ms  143 ms  136 ms  133 ms  134.20 ms
+Ali                   223.6.6.6            139 ms  141 ms  144 ms  145 ms  142 ms  141 ms  142 ms  143 ms  147 ms  146 ms  143.00 ms
+Comodo                8.26.56.26           158 ms  128 ms  158 ms  129 ms  130 ms  160 ms  163 ms  130 ms  136 ms  156 ms  144.80 ms
+Ali                   223.5.5.5            147 ms  148 ms  140 ms  145 ms  143 ms  148 ms  144 ms  145 ms  144 ms  150 ms  145.40 ms
+Comodo                8.20.247.20          159 ms  131 ms  131 ms  131 ms  160 ms  132 ms  157 ms  154 ms  164 ms  141 ms  146.00 ms
+CIRACanadianShield    149.112.122.10       152 ms  152 ms  158 ms  153 ms  154 ms  149 ms  155 ms  151 ms  151 ms  153 ms  152.80 ms
+SafeSurfer            104.197.28.121       154 ms  151 ms  156 ms  158 ms  154 ms  151 ms  157 ms  155 ms  160 ms  151 ms  154.70 ms
+DNSWatchGO            52.3.100.184         159 ms  153 ms  156 ms  160 ms  154 ms  159 ms  151 ms  157 ms  160 ms  161 ms  157.00 ms
+CIRACanadianShield    149.112.121.10       164 ms  161 ms  156 ms  154 ms  154 ms  163 ms  155 ms  160 ms  156 ms  155 ms  157.80 ms
+DNSWatchGO            54.174.40.213        160 ms  162 ms  160 ms  162 ms  157 ms  161 ms  158 ms  158 ms  152 ms  151 ms  158.10 ms
+Google                8.8.8.8              75 ms   1000 ms 81 ms   72 ms   75 ms   53 ms   56 ms   74 ms   52 ms   71 ms   160.90 ms
+AhaDNS                45.67.219.208        190 ms  190 ms  188 ms  185 ms  187 ms  185 ms  190 ms  189 ms  191 ms  188 ms  188.30 ms
+Freenom               80.80.81.81          179 ms  178 ms  202 ms  177 ms  212 ms  180 ms  239 ms  191 ms  181 ms  221 ms  196.00 ms
+Freenom               80.80.80.80          181 ms  181 ms  212 ms  181 ms  221 ms  178 ms  266 ms  177 ms  177 ms  226 ms  200.00 ms
+DNS.SB                185.222.222.222      230 ms  224 ms  223 ms  222 ms  232 ms  227 ms  230 ms  242 ms  224 ms  229 ms  228.30 ms
+DNSPod                119.28.28.28         230 ms  231 ms  223 ms  231 ms  229 ms  225 ms  229 ms  231 ms  231 ms  231 ms  229.10 ms
+DNS.SB                45.11.45.11          231 ms  233 ms  225 ms  233 ms  228 ms  238 ms  232 ms  245 ms  232 ms  227 ms  232.40 ms
+dns0.eu               185.253.5.0          232 ms  218 ms  238 ms  234 ms  223 ms  303 ms  217 ms  227 ms  220 ms  230 ms  234.20 ms
+Comss.one             193.17.47.1          238 ms  226 ms  241 ms  229 ms  233 ms  235 ms  233 ms  236 ms  235 ms  241 ms  234.70 ms
+CZ.NICODVR            185.43.135.1         227 ms  241 ms  230 ms  236 ms  239 ms  236 ms  240 ms  228 ms  235 ms  237 ms  234.90 ms
+LibreDNS              88.198.92.222        241 ms  228 ms  242 ms  242 ms  247 ms  238 ms  243 ms  231 ms  236 ms  236 ms  238.40 ms
+DNSForge              176.9.1.117          237 ms  237 ms  251 ms  231 ms  233 ms  239 ms  236 ms  253 ms  242 ms  243 ms  240.20 ms
+DNSForge              176.9.93.198         234 ms  237 ms  229 ms  236 ms  243 ms  241 ms  245 ms  255 ms  238 ms  245 ms  240.30 ms
+DNSforFamily          94.130.180.225       229 ms  244 ms  238 ms  228 ms  245 ms  240 ms  242 ms  261 ms  237 ms  248 ms  241.20 ms
+AhaDNS                5.2.75.75            244 ms  238 ms  239 ms  245 ms  248 ms  240 ms  244 ms  237 ms  239 ms  243 ms  241.70 ms
+OpenNIC               217.160.70.42        233 ms  231 ms  232 ms  235 ms  259 ms  228 ms  228 ms  292 ms  233 ms  285 ms  245.60 ms
+DNSforFamily          78.47.64.161         237 ms  247 ms  242 ms  237 ms  245 ms  240 ms  241 ms  389 ms  242 ms  241 ms  256.10 ms
+Yandex                77.88.8.1            266 ms  278 ms  266 ms  276 ms  277 ms  278 ms  271 ms  287 ms  269 ms  275 ms  274.30 ms
+Yandex                77.88.8.8            273 ms  276 ms  272 ms  277 ms  278 ms  275 ms  273 ms  273 ms  280 ms  281 ms  275.80 ms
+Quad101               101.102.103.104      306 ms  309 ms  308 ms  306 ms  312 ms  299 ms  302 ms  299 ms  306 ms  364 ms  311.10 ms
+SafeSurfer            104.155.237.225      304 ms  304 ms  304 ms  308 ms  355 ms  307 ms  346 ms  309 ms  305 ms  308 ms  315.00 ms
+Mullvad               194.242.2.2          155 ms  159 ms  156 ms  1000 ms 155 ms  157 ms  156 ms  158 ms  157 ms  1000 ms 325.30 ms
+DNSPod                119.29.29.29         224 ms  231 ms  450 ms  232 ms  448 ms  561 ms  230 ms  486 ms  230 ms  435 ms  352.70 ms
+dns0.eu               193.110.81.0         218 ms  494 ms  467 ms  220 ms  259 ms  298 ms  477 ms  234 ms  351 ms  514 ms  353.20 ms
+360SecureDNS          101.226.4.6          347 ms  382 ms  342 ms  350 ms  348 ms  345 ms  357 ms  372 ms  349 ms  345 ms  353.70 ms
+Quad101               101.101.101.101      318 ms  316 ms  345 ms  316 ms  508 ms  314 ms  338 ms  339 ms  314 ms  500 ms  360.80 ms
+360SecureDNS          218.30.118.6         371 ms  370 ms  368 ms  366 ms  366 ms  367 ms  370 ms  370 ms  369 ms  369 ms  368.60 ms
+114DNS                114.114.115.115      358 ms  375 ms  385 ms  360 ms  374 ms  365 ms  375 ms  383 ms  373 ms  363 ms  371.10 ms
+114DNS                114.114.114.114      358 ms  382 ms  364 ms  366 ms  389 ms  372 ms  375 ms  372 ms  375 ms  375 ms  372.80 ms
 ```
 
+<BR>
 
-# For Windows users using the Linux subsystem
+> ### _For Windows users using the Linux subsystem_
+> 
+> If you get a `$'\r': command not found` error, convert the file to a Linux-compatible line-end. Example:
+>
+> `tr -d '\15\32' < dnsperftest.sh > dnsperftest_win.sh`
+>   
+> Then run `bash ./dnsperftest_win.sh`
 
-If you receive an error `$'\r': command not found`, convert the file to a Linux-compatible line endings using:
+<BR>
 
-    tr -d '\15\32' < dnstest.sh > dnstest-2.sh
-    
-Then run `bash ./dnstest-2.sh`
+### REMARKS
+> _This script is forked from [CleanBrowsing DNS Performance Test](https://github.com/cleanbrowsing/dnsperftest)._
