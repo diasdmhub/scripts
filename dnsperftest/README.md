@@ -13,7 +13,6 @@
 ## DEFAULT DNS LIST
 
 - [X] The list is based on the [**AdGuard DNS providers list**](https://adguard-dns.io/kb/general/dns-providers).
-- [X] It is leaning toward, but not exclusive to, private providers.
 - [X] **It is recommended that you change this list to reflect your preferred providers.**
 
 | IPv4 DNS Provider | IP 1 | IP 2 | Filter* | Log* |
@@ -87,6 +86,8 @@
 - ⛏️ **`Dig`** tool
   - If using **APT**: `apt install dnsutils`
   - If using **YUM / DNF**: `dnf install bind-utils`
+  - If using **APK**: `apk add bind-tools`
+  - If using **PACMAN**: `pacman -S bind-tools`
 
 <BR>
 
@@ -196,7 +197,7 @@ Quad101               101.101.101.101      318 ms  316 ms  345 ms  316 ms  508 m
 
 <BR>
 
-> ### _For Windows users using the Linux subsystem_
+> ### _For Windows users using the Linux subsystem (WSL)_
 > 
 > If you get a `$'\r': command not found` error, convert the file to a Linux-compatible line-end. Example:
 >
