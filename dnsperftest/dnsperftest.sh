@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-{ which drill > /dev/null && dig=drill; } || { which dig > /dev/null && dig=dig; } || { echo "error: dig was not found. Please install dnsutils."; exit 1; }
+# Check for Dig binary
+{ which dig > /dev/null && dig=dig; } || { echo "error: dig was not found. Please install dig."; exit 1; }
 
-NAMESERVERS=$(cat /etc/resolv.conf | grep ^nameserver | cut -d " " -f 2 | sed 's/$/#[\/etc\/resolv.conf]/')
+# Build a list of nameservers from this host
+NAMESERVERS=$(grep '^nameserver' /etc/resolv.conf | cut -d ' ' -f 2 | sed 's/$/#[local_nameserver]/')
 
 # IPv4 DNS providers
 PROVIDERSV4="
@@ -68,6 +70,8 @@ PROVIDERSV4="
 45.67.219.208#AhaDNS
 176.9.93.198#DNSForge
 176.9.1.117#DNSForge
+45.54.76.1#deSEC.io
+157.53.224.1#deSEC.org
 "
 
 # IPv6 DNS providers
@@ -80,9 +84,11 @@ PROVIDERSV6="
 2a02:6b8::feed:0ff#yandex-v6
 2a00:5a60::ad1:0ff#adguard-v6
 2610:a1:1018::3#neustar-v6
+2607:f740:e633:deec::2#deSEC.io
+2607:f740:e00a:deec::2#deSEC.org
 "
 
-# Domains to test. Duplicated domains are ok
+# Domains to test against. Duplicated domains are ok
 DOMAINS2TEST="
 google.com
 facebook.com
@@ -97,26 +103,25 @@ whatsapp.com
 "
 
 # Testing for IPv6 connectivity
-$dig +short +tries=1 +time=2 +stats @2a0d:2a00:1::1 www.google.com | grep 216.239.38.120 >/dev/null 2>&1
-if [ $? = 0 ]; then
-    hasipv6="true"
+if $dig +short +tries=1 +time=2 +stats @2607:f740:e633:deec::2 checkipv6.dedyn.io AAAA | grep -q -s '2a01:4f8:10a:1044:deec:642:ac10:80'; then
+	hasipv6="true"
 fi
 
 
 # Check the provided argument
 providerstotest=$PROVIDERSV4
 
-if [ "x$1" = "xipv6" ]; then
-    if [ "x$hasipv6" = "x" ]; then
-        echo "error: IPv6 support not found. Unable to do the ipv6 test."; exit 2;
+if [ "$1" = "ipv6" ]; then
+    if [ -z "$hasipv6" ]; then
+        echo "error: IPv6 support not found. Unable to do an IPv6 test."; exit 2;
     fi
     providerstotest=$PROVIDERSV6
 
-elif [ "x$1" = "xipv4" ]; then
+elif [ "$1" = "ipv4" ]; then
     providerstotest=$PROVIDERSV4
 
-elif [ "x$1" = "xall" ]; then
-    if [ "x$hasipv6" = "x" ]; then
+elif [ "$1" = "all" ]; then
+    if [ -z "$hasipv6" ]; then
         providerstotest=$PROVIDERSV4
     else
         providerstotest="$PROVIDERSV4 $PROVIDERSV6"
@@ -146,10 +151,10 @@ for p in $NAMESERVERS $providerstotest; do
 
     printf "%-21s %-21s" "$pname" "$pip"
     for d in $DOMAINS2TEST; do
-        ttime=$($dig +tries=1 +time=2 +stats @$pip $d | grep "Query time:" | cut -d : -f 2- | cut -d " " -f 2)
+        ttime=$($dig +tries=1 +time=2 +stats "@$pip" "$d" | grep "Query time:" | cut -d : -f 2- | cut -d " " -f 2)
         if [ -z "$ttime" ]; then
             ttime=1000  # Time out of 1s = 1000ms
-        elif [ "x$ttime" = "x0" ]; then
+        elif [ "$ttime" = "0" ]; then
             ttime=1
         fi
 
