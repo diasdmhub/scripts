@@ -1,10 +1,10 @@
 #!/bin/bash
-# TEST A DNS SERVER LIST AGAINST A DOMAIN NAME
+# QUERY A DOMAIN NAME IPv4 FROM A DNS SERVER LIST
 # by Diasdm
 # Syntax: ./dns_multi_server.sh [domain] [dnslist path]
 
 # EITHER PASS DOMAIN NAME AS ARGUMENT OR ASK FOR IT
-echo -e "\n"
+printf "\n"
 domain=$1
 [ -z "$domain" ] && read -r -p "DOMAIN NAME: " domain
 
@@ -19,7 +19,13 @@ query(){
 }
 
 # MAIN LOOP
-echo -e "\n"
+printf "\n"
+printf "--------------------------------------------\n"
+printf "Domain: %-35s|\n" "$domain"
+printf "--------------------------------------------\n"
+printf "RESULT |   NAMESERVER    |     AWNSWER     |\n"
+printf "--------------------------------------------\n"
+
 for dnsserver in $(cat "$dnslist"); do
         result="OK"
         IPADD=$(query "$dnsserver" "$domain")
@@ -27,7 +33,8 @@ for dnsserver in $(cat "$dnslist"); do
         # AVOID TIMEOUT BIG RESPONSE
         echo "$IPADD" | grep -s -q "timed out" && { IPADD="Timeout" ; result="FAIL" ; }
 
-        echo "$result   > Nameserver: $dnsserver - Domain: $domain - IP answer: $IPADD"
+        printf "%-6s | %-15s | %-15s |\n" "$result" "$dnsserver" "$IPADD"
 done
-echo -e "\n"
+
+printf "--------------------------------------------\n"
 exit 0
