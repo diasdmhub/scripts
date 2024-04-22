@@ -15,26 +15,30 @@ dnslist=$2
 
 # QUERY FUNCTION USING DIG
 query(){
-        dig +timeout=1 +short "@$1" "$2" A 2> /dev/null
+	dig +timeout=1 +short "@$1" "$2" A 2> /dev/null
 }
 
-# MAIN LOOP
+# HEADER
 printf "\n"
-printf "--------------------------------------------\n"
-printf "Domain: %-35s|\n" "$domain"
-printf "--------------------------------------------\n"
-printf "RESULT |   NAMESERVER    |     AWNSWER     |\n"
-printf "--------------------------------------------\n"
+printf "|-----------------------------------------------------------------|\n"
+printf "| Domain: %-56s|\n" "$domain"
+printf "|--------|-----------------|--------------------------------------|\n"
+printf "| RESULT |   AWNSWER       |              NAMESERVER              |\n"
+printf "|--------|-----------------|--------------------------------------|\n"
 
+# MAIN LOOP
 for dnsserver in $(cat "$dnslist"); do
-        result="OK"
-        IPADD=$(query "$dnsserver" "$domain")
+	result="OK"
+	serverip=${dnsserver%%#*}
+	servername=${dnsserver##*#}
 
-        # AVOID TIMEOUT BIG RESPONSE
-        echo "$IPADD" | grep -s -q "timed out" && { IPADD="Timeout" ; result="FAIL" ; }
+	DADD=$(query "$serverip" "$domain")
 
-        printf "%-6s | %-15s | %-15s |\n" "$result" "$dnsserver" "$IPADD"
+	# AVOID TIMEOUT BIG RESPONSE
+	echo "$DADD" | grep -s -q "timed out" && { DADD="Timeout" ; result="FAIL" ; }
+
+	printf "| %-6s | %-15s | %-15s - %-18s |\n" "$result" "$DADD" "$serverip" "$servername"
 done
 
-printf "--------------------------------------------\n"
+printf "|--------|-----------------|--------------------------------------|\n\n"
 exit 0
