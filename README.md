@@ -11,7 +11,7 @@
 <BR>
 
 [▶️ DNS Multi Server](./dns_multi_server/)
-> Test a DNS server list against a domain name
+> Query a domain name IPv4 from a DNS server list
 
 <BR>
 
