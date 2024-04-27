@@ -1,8 +1,8 @@
 #---------- INFORMATION -----------------------------
 #
 # Script.: deSEC DDNS update script for RouterOS
-# Version: 1
-# Created: 24/03/2024
+# Version: 2
+# Created: 27/04/2024
 # Author.: diasdm
 # Source.: https://github.com/diasdmhub/scripts
 #
@@ -50,7 +50,7 @@
     :if ([:len [find where interface=$ifIPv4]] > 1) do={
 	    :return "Interface -> $ifIPv4 <- has more than one address"
 	}
-    :local ifAdd [get [find where interface=$ifIPv4] address]
+    :local ifAdd [get number=[find where interface=$ifIPv4] value-name=address]
     :return [:toip [:pick $ifAdd 0 [:find $ifAdd "/" -1]]]
 }
 
@@ -58,10 +58,11 @@
 :global getWanIpv6 do={
     :local ifIPv6 [:tostr $inter]
     /ipv6 address
-    :if ([:len [find where interface=$ifIPv6 global address]] > 1) do={
-	    :return "Interface -> $ifIPv6 <- has more than one global address"
-	}
-    :local ifAdd [get [find where interface=$ifIPv6 global dynamic address] address]
+#    :if ([:len [find where interface=$ifIPv6 global address]] > 1) do={
+#	    :return "Interface -> $ifIPv6 <- has more than one global address"
+#	}
+# Using pick to select only the first available IPv6 global address
+    :local ifAdd [get number=[:pick [find where interface=$ifIPv6 global dynamic address] 0 1] value-name=address]
     :return [:toip6 [:pick $ifAdd 0 [:find $ifAdd "/" -1]]]
 }
 
@@ -72,7 +73,7 @@
 :local valInt [$validadeInt $wanInterface]
 :if ($valInt != true) do={
     :log error message="deSEC DDNS: Failed WAN interface -> $valInt"
-    :error "deSEC DDNS: fail 1"
+    :error "deSEC DDNS: Failed WAN interface -> $valInt"
 }
 
 # Resolve current deSEC domain ip address
@@ -80,21 +81,21 @@
     :set domainIPv4 [:resolve domain-name=$desecDomain]
 } on-error={
     :log error message="deSEC DDNS: Failure to resolve IPv4 DNS domain \"$desecDomain\""
-    :error "deSEC DDNS: fail 2"
+    :error "deSEC DDNS: Failure to resolve IPv4 DNS domain \"$desecDomain\""
 }
 
 # Get current IPv4 from the WAN interface
 :set currentIPv4 [$getWanIpv4 inter=$wanInterface]
 :if ([:type $currentIPv4] != "ip") do={
     :log error message="deSEC DDNS: Failed to get WAN IPv4 -> $currentIPv4"
-    :error "deSEC DDNS: fail 3"
+    :error "deSEC DDNS: Failed to get WAN IPv4 -> $currentIPv4"
 }
 
 # Get current IPv6 from the WAN interface
 :set currentIPv6 [$getWanIpv6 inter=$wanInterface]
 :if ([:type $currentIPv6] != "ip6") do={
     :log error message="deSEC DDNS: Failed to get WAN IPv6 -> $currentIPv6"
-	:error "deSEC DDNS: fail 4"
+	:error "deSEC DDNS: Failed to get WAN IPv6 -> $currentIPv6"
 }
 
 # Send new IP if the domain is not updated
@@ -108,7 +109,7 @@
         :set desecResponse [/tool fetch url=$desecRequestURL mode=https http-header-field="Authorization: Token $desecToken" output=user as-value]
     } on-error={
         :log error message="deSEC DDNS: Failed twice to send GET request to the deSEC server."
-        :error "deSEC DDNS: fail 5"
+        :error "deSEC DDNS: Failed twice to send GET request to the deSEC server."
     }
 
 # Validating response
