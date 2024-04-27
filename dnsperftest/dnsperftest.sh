@@ -28,8 +28,8 @@ PROVIDERSV4="
 119.28.28.28#DNSPod
 54.174.40.213#DNSWatchGO
 52.3.100.184#DNSWatchGO
-216.146.35.35#Dyn
-216.146.36.36#Dyn
+216.146.35.35#OracleDyn
+216.146.36.36#OracleDyn
 80.80.80.80#Freenom
 80.80.81.81#Freenom
 8.8.8.8#Google
@@ -132,42 +132,44 @@ fi
 
 
 # Printing the output header
-totaldomains=0
-printf "\n%-21s %-21s" "" ""
+printf "\nDNS PROVIDER PERFORMANCE TEST\n"
+printf "%-122s\n" "" | tr ' ' '-'
+printf "| Provider %-9s | IP / Test >%-5s" "" ""
 
+totaldomains=0
 for d in $DOMAINS2TEST; do
     totaldomains=$((totaldomains + 1))
-    printf "%-8s" "test$totaldomains"
+    printf "%-7s" "| $totaldomains"
 done
 
-printf "%-8s" "Average"
-echo ""
+printf "%-11s |\n" "| Average "
+printf "%-122s\n" "" | tr ' ' '-'
 
 
+# Testing providers
 for p in $NAMESERVERS $providerstotest; do
     pip=${p%%#*}
     pname=${p##*#}
-    ftime=0
+    total_time=0
 
-    printf "%-21s %-21s" "$pname" "$pip"
+    printf "| %-18s | %-16s" "$pname" "$pip"
     for d in $DOMAINS2TEST; do
-        ttime=$($dig +tries=1 +time=2 +stats "@$pip" "$d" | grep "Query time:" | cut -d : -f 2- | cut -d " " -f 2)
-        if [ -z "$ttime" ]; then
-            ttime=1000  # Time out of 1s = 1000ms
-        elif [ "$ttime" = "0" ]; then
-            ttime=1
+        query_time=$($dig +tries=1 +time=2 +stats "@$pip" "$d" | grep "Query time:" | cut -d : -f 2- | cut -d " " -f 2)
+        if [ -z "$query_time" ]; then
+            query_time=1000  # Time out of 1s = 1000ms
+        elif [ "$query_time" = "0" ]; then
+            query_time=1
         fi
 
-        printf "%-8s" "$ttime ms"
-        ftime=$((ftime + ttime))
+        printf "| %4s " $query_time
+        total_time=$((total_time + query_time))
     done
 	
-    avg=$((100 * ftime / totaldomains))
+    avg=$((100 * total_time / totaldomains))
     avg_decimal=$((avg / 100))
     avg_remainder=$((avg % 100))
-    printf "%d.%02d ms\n" $avg_decimal $avg_remainder
-
+    printf "| %3d.%-02d ms |\n" $avg_decimal $avg_remainder
 done
 
-printf "\n"
+printf "%-122s\n\n" "" | tr ' ' '-'
 exit 0;
