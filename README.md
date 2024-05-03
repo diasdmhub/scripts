@@ -22,3 +22,8 @@
 
 [▶️ DNS Performance Test](./dnsperftest/)
 > Script to test the performance of the most popular DNS providers
+
+<BR>
+
+[▶️ Update system](./update_pkg/)
+> Shell script to update an APT or DNF managed system
