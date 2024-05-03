@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# UPDATE.SH
-# SCRIPT DE ATUALIZACAO COMPLETA DO SISTEMA
-# CRIACAO DE ALIAS BASICOS CASO NAO EXISTA
-# por Dan
+# update_apt.sh: Script to fully update the system
+# and create basic aliases
+# by diasdm
+# v3 - 20240502
 # v2 - 20200501
 # v1 - 20200428
 
@@ -12,7 +12,7 @@ clear
 #001 VARIABLES
 
 SCRIPT_DIR=$HOME/scripts/prod
-SCRIPT_NAME="update.sh"
+SCRIPT_NAME="update_apt.sh"
 CONTINUE="x"
 
 
@@ -64,7 +64,7 @@ fi
 
 if [ ! -f ~/.bash_aliases ]; then
         echo -e "\nUser aliases not found. Creating...\n"
-        echo "alias update='$SCRIPT_DIR/$SCRIPT_NAME'" > ~/.bash_aliases
+        echo "alias updateapt='$SCRIPT_DIR/$SCRIPT_NAME'" > ~/.bash_aliases
         echo "alias ls='ls --color=auto'" >> ~/.bash_aliases
         echo "alias ll='ls -lah --color=auto'" >> ~/.bash_aliases
         source ~/.bashrc
@@ -74,12 +74,11 @@ fi
 #006 SYSTEM COMPLETE UPDATE
 
 echo -e "\nUPDATING SYSTEM\n"
-        sudo apt-get -y update
-        sudo apt-get -y upgrade
-        sudo apt-get -y dist-upgrade
-        sudo apt-get -y autoremove      #remove not required packages
-        sudo apt-get -y clean           #clean package archive cache
-        sudo apt-get -y -f install
+        sudo apt -y update
+        sudo apt -y full-upgrade
+        sudo apt -y autoremove      # remove not required packages
+        sudo apt -y clean           # clears package archive cache
+        sudo apt -y -f install
 
 
 #007 DELETE SCRIPT AFTER FIRST TIME USE
@@ -90,8 +89,8 @@ fi
 
 
 echo -e "\nRUN \". ~/.bashrc\" TO UPDATE YOUR ALIASES\n"
-echo -e "IF YOU TYPE \"update\" THIS SCRIPT WILL START"
+echo -e "IF YOU TYPE \"updateapt\" THIS SCRIPT WILL START"
 echo -e "AT $SCRIPT_DIR/$SCRIPT_NAME\n"
 
 
-exit 0; # SCRIPT END
+exit 0;

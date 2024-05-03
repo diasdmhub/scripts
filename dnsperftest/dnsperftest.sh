@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# Shell script to test the performance of the most popular DNS providers so you can test from your own location
+# by diasdm
 
 # Check for Dig binary
 { which dig > /dev/null && dig=dig; } || { echo "error: dig was not found. Please install dig."; exit 1; }

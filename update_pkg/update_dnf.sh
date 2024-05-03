@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# UPDATE.SH
-# SCRIPT DE ATUALIZACAO COMPLETA DO SISTEMA
-# CRIACAO DE ALIAS BASICOS CASO NAO EXISTA
-# por Dan
+# update_dnf.sh: Script to fully update the system
+# and create basic aliases
+# by diasdm
+# v3 - 20240502
 # v2 - 20200501
 # v1 - 20200428
 
@@ -62,19 +62,19 @@ fi
 
 #005 CHECK BASH ALIASES
 
-if [ ! -f ~/.bashrc ]; then
+if [ ! -f ~/.bash_aliases ]; then
 	echo -e "\nUser aliases not found. Creating...\n"
-	echo "alias update='$SCRIPT_DIR/$SCRIPT_NAME'" >> ~/.bashrc
+	echo "alias updatednf='$SCRIPT_DIR/$SCRIPT_NAME'" >> ~/.bashrc
 	echo "alias ls='ls --color=auto'" >> ~/.bashrc
 	echo "alias ll='ls -lah --color=auto'" >> ~/.bashrc
-	source ~/.bashrc
+	source ~/.bash_aliases
 fi
 
 
 #006 SYSTEM COMPLETE UPDATE
 
 echo -e "\nUPDATING SYSTEM\n"
-	sudo dnf -y upgrade
+	sudo dnf -y --refresh upgrade
 	sudo dnf -y autoremove		#remove not required packages
 	sudo dnf -y clean all 		#clean package archive cache
 
@@ -87,7 +87,7 @@ fi
 
 
 echo -e "\nRUN \". ~/.bashrc\" TO UPDATE YOUR ALIASES\n"
-echo -e "IF YOU TYPE \"update\" THIS SCRIPT WILL START"
+echo -e "IF YOU TYPE \"updatednf\" THIS SCRIPT WILL START"
 echo -e "AT $SCRIPT_DIR/$SCRIPT_NAME\n"
 
 
