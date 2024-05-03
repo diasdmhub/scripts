@@ -45,12 +45,6 @@ $ ~/update_dnf.sh
 
 <BR>
 
-## DEFAULT DNS LIST
-
-- [X] The list is based on the [**AdGuard DNS providers list**](https://adguard-dns.io/kb/general/dns-providers).
-
-<BR>
-
 ## REQUIREMENTS
 
 - The system must be managed by **APT** or **DNF**.
