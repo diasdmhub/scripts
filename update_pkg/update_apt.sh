@@ -21,31 +21,31 @@ CONTINUE="x"
 Header () {
 
 while [ $CONTINUE != "y" ]; do
-        echo "    COMPLETE SYSTEM UPDATE"
-        echo -e "     USER ALIAS CREATION\n\n"
+    printf "%18s" "SYSTEM UPDATE"
+    printf "%24s\n\n" "USER ALIAS CREATION"
 
-        echo "********* ATENTION ***********"
-        echo "*THIS SCRIPT WILL UPDATE YOUR*"
-        echo "*     SYSTEM COMPLETELY.     *"
-        echo "*  IT MIGHT TAKE SOME TIME   *"
-        echo "******************************"
-        read -p "DO YOU WISH TO CONTINUE? <y/n> >> " CONTINUE
+    echo "********* ATENTION ***********"
+    echo "*THIS SCRIPT WILL UPDATE YOUR*"
+    echo "*     SYSTEM COMPLETELY.     *"
+    echo "*  IT MIGHT TAKE SOME TIME   *"
+    echo "******************************"
+    read -p "DO YOU WISH TO CONTINUE? <y/n> >> " CONTINUE
                 CONTINUE=${CONTINUE,,}
 
 
 #003 CHECK IF USER WANTS TO CONTINUE
 
-        if [ $CONTINUE = "n" ]; then
-                echo -e "\n"
-                exit 1; # USER EXIT
-        elif [ $CONTINUE = "y" ];then
-                :
-        else
-                echo -e "\nYes (y) or No (n)"
-                sleep 3
-                clear
-        fi
-        done
+    if [ $CONTINUE = "n" ]; then
+            echo -e "\n"
+            exit 1; # USER EXIT
+    elif [ $CONTINUE = "y" ];then
+            :
+    else
+            echo -e "\nYes (y) or No (n)"
+            sleep 3
+            clear
+    fi
+    done
 
 }
 Header
@@ -54,31 +54,30 @@ Header
 #004 CHECK SCRIPT DIR
 
 if [ ! -d $SCRIPT_DIR ]; then
-        echo -e "\nScript main directory not found. Creating...\n"
-        mkdir -p -v $SCRIPT_DIR
-        cp -v $SCRIPT_NAME $SCRIPT_DIR
+    echo -e "\nScript main directory not found. Creating...\n"
+    mkdir -p -v $SCRIPT_DIR
+    cp -v $SCRIPT_NAME $SCRIPT_DIR
 fi
 
 
 #005 CHECK BASH ALIASES
 
 if [ ! -f ~/.bash_aliases ]; then
-        echo -e "\nUser aliases not found. Creating...\n"
-        echo "alias updateapt='$SCRIPT_DIR/$SCRIPT_NAME'" > ~/.bash_aliases
-        echo "alias ls='ls --color=auto'" >> ~/.bash_aliases
-        echo "alias ll='ls -lah --color=auto'" >> ~/.bash_aliases
-        source ~/.bashrc
+    echo -e "\nUser aliases not found. Creating...\n"
+    echo "alias updateapt='$SCRIPT_DIR/$SCRIPT_NAME'" > ~/.bash_aliases
+    echo "alias ls='ls --color=auto'" >> ~/.bash_aliases
+    echo "alias ll='ls -lah --color=auto'" >> ~/.bash_aliases
 fi
 
 
 #006 SYSTEM COMPLETE UPDATE
 
 echo -e "\nUPDATING SYSTEM\n"
-        sudo apt -y update
-        sudo apt -y full-upgrade
-        sudo apt -y autoremove      # remove not required packages
-        sudo apt -y clean           # clears package archive cache
-        sudo apt -y -f install
+    sudo apt -y update
+    sudo apt -y full-upgrade
+    sudo apt -y autoremove      # remove not required packages
+    sudo apt -y clean           # clears package archive cache
+    sudo apt -y -f install
 
 
 #007 DELETE SCRIPT AFTER FIRST TIME USE

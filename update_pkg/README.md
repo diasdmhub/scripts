@@ -1,6 +1,6 @@
 <h1 align="center">DNF System Update</h1>
 <p align="center">
-  <b>Shell script to update a APT or DNF managed system</b>
+  <b>Shell script to update an APT or DNF managed system</b>
 </p>
 
 <BR>
