@@ -1,21 +1,25 @@
-<h1 align="center">Auto SSH Copy Id Script</h1>
 <p align="center">
 <b>COPY A USER SSH PUBLIC KEY TO MULTIPLE HOSTS</b>
 </p>
 <BR>
 
 ## DOWNLOAD
-[▶️ auto_ssh_copy_id.sh](https://raw.githubusercontent.com/diasdmhub/scripts/master/auto_ssh_copy_id/auto_ssh_copy_id.sh)
+
+[▶️ auto_ssh_copy_id.sh](./auto_ssh_copy_id.sh)
 
 <BR>
 
 ## USAGE
-- [X] All remote hosts in the list must use the same user and password :warning:
-- [X] Set up a list of hosts you wish to connect via SSH.
-  - By default, the host list uses the **`./hostlist.txt`** file
-- [X] The list must use an IP address or domain name
+
+- <input type="checkbox" checked> All remote hosts in the list must use the same user and password :warning:
+- <input type="checkbox" checked> Set up a list of hosts you wish to connect via SSH.
+
+    > By default, the host list uses the **`./hostlist.txt`** file
+
+- <input type="checkbox" checked> The list must use an IP address or domain name
 
 #### List example:
+
 ```
   192.168.80.10
   192.168.80.11
@@ -29,6 +33,7 @@
 
   
 ## REQUIREMENTS
+
 - **`sshpass`** package
   - **APT** - `apt install sshpass`
   - **DNF** - `dnf install sshpass`
@@ -40,15 +45,19 @@
   - Use `sudo` if not using **_root_**
 - Public key must be set for local user
   - Example: `ssh-keygen -b 4096 -t rsa`
+
 <BR>
 
 
 ## SYNTAX
+
 > Pass arguments at command line
 ```bash
   ./auto_ssh_copy_id.sh [local user] [remote user] [remote pass] [path to host list] [path to local pub key]
 ```
+
 **OR**
+
 > Pass arguments interactively
 ```bash
   $ /home/dan/github/scripts/auto_ssh_copy_id/auto_ssh_copy_id.sh
@@ -58,10 +67,12 @@ REMOTE USER PASSWORD: [remote user pass]
 HOST LIST FILE PATH (default ./hostlist.txt): /path/to/host/list.txt
 LOCAL USER PUB KEY PATH (default ~/.ssh/id_rsa.pub): /path/to/public/key.pub
 ```
+
 <BR>
 
 
 ## EXAMPLE
+
 ```bash
 $ /root/github/scripts/auto_ssh_copy_id/auto_ssh_copy_id.sh
 
