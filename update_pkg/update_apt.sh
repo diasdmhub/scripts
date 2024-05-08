@@ -21,8 +21,8 @@ CONTINUE="x"
 Header () {
 
 while [ $CONTINUE != "y" ]; do
-    printf "%18s" "SYSTEM UPDATE"
-    printf "%24s\n\n" "USER ALIAS CREATION"
+    printf "%18s\n" "SYSTEM UPDATE"
+    printf "%21s\n\n" "USER ALIAS CREATION"
 
     echo "********* ATENTION ***********"
     echo "*THIS SCRIPT WILL UPDATE YOUR*"
