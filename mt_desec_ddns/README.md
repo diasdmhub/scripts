@@ -15,9 +15,8 @@ s.
 
 <BR>
 
-> [▶️ deSEC DDNS script for Shell](./desec_ddns.sh)
-
-> _Added for future usage. Mainly for limited Linux OS._
+> [▶️ deSEC DDNS script for Shell](./desec_ddns.sh) <br>
+  > _Added for future usage. Mainly for limited Linux OS._
 
 <BR>
 
