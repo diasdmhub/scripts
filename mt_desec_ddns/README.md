@@ -24,10 +24,10 @@ s.
 ## REQUIREMENTS
 
 - ✔️ Mikrotik device that supports scripts <br>
-> The script may require recent RouterOS to work properly. Make sure you have the latest updates installed before you begin. <br>
+  > The script may require recent RouterOS to work properly. Make sure you have the latest updates installed before you begin. <br>
 
 - ✔️ Active DNS domain name at [deSEC.io](https://desec.io) <br>
-> The deSEC DNS name must have at least an appropriate IPv4 or IPv6 address before the script is run.
+  > The deSEC DNS name must have at least an appropriate IPv4 or IPv6 address before the script is run.
 
 - ✔️ A valid token for the deSEC domain name
 
