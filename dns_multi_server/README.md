@@ -38,7 +38,7 @@
 
 ## SYNTAX
 
-<input type="checkbox" disabled checked> Domain and list as arguments
+💠 Domain and list as arguments
 
 ```bash
 $ ./dns_multi_server.sh [domain] [dnslist path]
@@ -46,7 +46,7 @@ $ ./dns_multi_server.sh [domain] [dnslist path]
 
 **OR**
 
-<input type="checkbox" disabled checked> Domain and list asked if no arguments are passed
+💠 Domain and list asked if no arguments are passed
 
 ```bash
 $ ./dns_multi_server.sh
