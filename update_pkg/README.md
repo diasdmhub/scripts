@@ -9,7 +9,8 @@
 
 The script updates the system, removes unneeded packages, and clears the package manager cache. It also creates some simple aliases for easy script launching and system navigation.
 
-The first run saves a copy of the script in the user's home directory, `$HOME/scripts/prod`, and attempts to create aliases in the `.bash_aliases` file if it does not exist, which it then sources. At the end, the script removes itself from the starting directory.
+The first run saves a copy of the script in the user's home directory, `$HOME/scripts/prod`, and attempts to create aliases in the `.bash_aliases` file if it does not exist, which it then sources. At the end, the script remo
+ves itself from the starting directory.
 
 ---
 
@@ -27,21 +28,23 @@ The first run saves a copy of the script in the user's home directory, `$HOME/sc
 
 ## SYNTAX
 
+> ℹ️ Alias is only available after the first execution.
+
 - **APT**
-  - Alias: `updateapt`
-  
+    - Alias: `updateapt`
+
 ```bash
 $ ~/update_apt.sh
 ```
 
+<BR>
+
 - **DNF**
-  - Alias: `updatednf`
+    - Alias: `updatednf`
 
 ```bash
 $ ~/update_dnf.sh
 ```
-
-> Alias is only available after the first execution.
 
 <BR>
 
