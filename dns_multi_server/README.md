@@ -1,12 +1,3 @@
----
-title: DNS Multi Server script
-summary: Query a domain name IPv4 from a DNS server list
-authors:
-    - Diasdm
-date:
-some_url: https://github.com/diasdmhub/scripts/
----
-
 <h1 align="center">DNS Multi Server script</h1>
 <p align="center">
 <b>QUERY A DOMAIN NAME IPv4 FROM A DNS SERVER LIST</b>
