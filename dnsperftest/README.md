@@ -12,59 +12,59 @@
 
 ## DEFAULT DNS LIST
 
-- [X] The list is based on the [**AdGuard DNS providers list**](https://adguard-dns.io/kb/general/dns-providers).
-- [X] **It is recommended that you change this list to reflect your preferred providers.**
+- ✅ The list is based on the [**AdGuard DNS providers list**](https://adguard-dns.io/kb/general/dns-providers).
+- ℹ️ **It is recommended that you change this list to reflect your preferred providers.**
 
-| IPv4 DNS Provider | IP 1 | IP 2 | Filter* | Log* |
-| --- | :---: | :---: | :---: | :---: |
-| AdGuard | 94.140.14.140 | 94.140.14.141 | No | Yes |
-| Ali | 223.5.5.5 | 223.6.6.6 | Yes | Yes |
-| BebasDNS | 103.87.68.193 | - | No | No |
-| Cisco OpenDNS | 208.67.222.2 | 208.67.220.2 | Yes | Yes |
-| CleanBrowsing | 185.228.168.168 | 185.228.169.168 | Yes | Yes |
-| CloudFlare | 1.1.1.1 | 1.0.0.1 | No | Yes |
-| Comodo | 8.26.56.26 | 8.20.247.20 | Yes | Yes |
-| ControlD | 76.76.2.0 | 76.76.10.0 | No | Yes |
-| DNS.SB | 185.222.222.222 | 45.11.45.11 | No |  No |
-| DNSPod | 119.29.29.29 | 119.28.28.28 | Yes |  Yes |
-| DNSWatchGO | 54.174.40.213 | 52.3.100.184 | Yes |  Yes |
-| Dyn | 216.146.35.35 | 216.146.36.36 | Yes |  Yes |
-| Freenom | 80.80.80.80 | 80.80.81.81 | Yes |  No |
-| Google | 8.8.8.8 | 8.8.4.4 | No |  Yes |
-| Hurricane Electric | 74.82.42.42 | - | Yes |  Yes |
-| Mullvad | 194.242.2.2 | - | No |  Yes |
-| Neustar | 156.154.70.1 | 156.154.71.1 | No |  Yes |
-| dns0.eu | 193.110.81.0 | 185.253.5.0 | Yes |  Yes |
-| Quad9 | 9.9.9.10 | 149.112.112.10 | No |  Yes |
-| Safe DNS | 195.46.39.39 | 195.46.39.40 | Yes |  Yes |
-| 360 Secure DNS | 101.226.4.6 | 218.30.118.6 | Yes |  Yes |
-| Verisign | 64.6.64.6 | 64.6.65.6 | Yes |  Yes |
-| Safe Surfer | 104.155.237.225 | 104.197.28.121 | Yes |  Yes |
-| CIRA Canadian Shield | 149.112.121.10 | 149.112.122.10 | No |  Yes |
-| Comss.one | 193.17.47.1 | - | Yes |  Yes |
-| CZ.NIC ODVR | 76.76.2.22 | 185.43.135.1 | No |  No |
-| DNS for Family | 94.130.180.225 | 78.47.64.161 | Yes |  Yes |
-| Fondation Restena | 76.76.2.22 | - | No |  Yes |
-| 114DNS | 114.114.114.114 | 114.114.115.115 | Yes |  Yes |
-| LibreDNS | 88.198.92.222 | - | No |  Yes |
-| OpenNIC DNS | 217.160.70.42 | - | No |  Yes |
-| Quad101 | 101.101.101.101 | 101.102.103.104 | No |  No |
-| Yandex | 77.88.8.8 | 77.88.8.1 | No |  Yes |
-| AhaDNS | 5.2.75.75 | 45.67.219.208 | Yes |  No |
-| DNS Forge | 176.9.93.198 | 176.9.1.117 | Yes |  No |
+| IPv4 DNS Provider   | IP 1             | IP 2             | Filter* | Log* |
+| ------------------- | :--------------: | :--------------: | :-----: | :--: |
+| AdGuard             | 94.140.14.140    | 94.140.14.141    | No      | Yes  |
+| Ali                 | 223.5.5.5        | 223.6.6.6        | Yes     | Yes  |
+| BebasDNS            | 103.87.68.193    | -                | No      | No   |
+| Cisco OpenDNS       | 208.67.222.2     | 208.67.220.2     | Yes     | Yes  |
+| CleanBrowsing       | 185.228.168.168  | 185.228.169.168  | Yes     | Yes  |
+| CloudFlare          | 1.1.1.1          | 1.0.0.1          | No      | Yes  |
+| Comodo              | 8.26.56.26       | 8.20.247.20      | Yes     | Yes  |
+| ControlD            | 76.76.2.0        | 76.76.10.0       | No      | Yes  |
+| DNS.SB              | 185.222.222.222  | 45.11.45.11      | No      | No   |
+| DNSPod              | 119.29.29.29     | 119.28.28.28     | Yes     | Yes  |
+| DNSWatchGO          | 54.174.40.213    | 52.3.100.184     | Yes     | Yes  |
+| Dyn                 | 216.146.35.35    | 216.146.36.36    | Yes     | Yes  |
+| Freenom             | 80.80.80.80      | 80.80.81.81      | Yes     | No   |
+| Google              | 8.8.8.8          | 8.8.4.4          | No      | Yes  |
+| Hurricane Electric  | 74.82.42.42      | -                | Yes     | Yes  |
+| Mullvad             | 194.242.2.2      | -                | No      | Yes  |
+| Neustar             | 156.154.70.1     | 156.154.71.1     | No      | Yes  |
+| dns0.eu             | 193.110.81.0     | 185.253.5.0      | Yes     | Yes  |
+| Quad9               | 9.9.9.10         | 149.112.112.10   | No      | Yes  |
+| Safe DNS            | 195.46.39.39     | 195.46.39.40     | Yes     | Yes  |
+| 360 Secure DNS      | 101.226.4.6      | 218.30.118.6     | Yes     | Yes  |
+| Verisign            | 64.6.64.6        | 64.6.65.6        | Yes     | Yes  |
+| Safe Surfer         | 104.155.237.225  | 104.197.28.121   | Yes     | Yes  |
+| CIRA Canadian Shield| 149.112.121.10   | 149.112.122.10   | No      | Yes  |
+| Comss.one           | 193.17.47.1      | -                | Yes     | Yes  |
+| CZ.NIC ODVR         | 76.76.2.22       | 185.43.135.1     | No      | No   |
+| DNS for Family      | 94.130.180.225   | 78.47.64.161     | Yes     | Yes  |
+| Fondation Restena   | 76.76.2.22       | -                | No      | Yes  |
+| 114DNS              | 114.114.114.114  | 114.114.115.115  | Yes     | Yes  |
+| LibreDNS            | 88.198.92.222    | -                | No      | Yes  |
+| OpenNIC DNS         | 217.160.70.42    | -                | No      | Yes  |
+| Quad101             | 101.101.101.101  | 101.102.103.104  | No      | No   |
+| Yandex              | 77.88.8.8        | 77.88.8.1        | No      | Yes  |
+| AhaDNS              | 5.2.75.75        | 45.67.219.208    | Yes     | No   |
+| DNS Forge           | 176.9.93.198     | 176.9.1.117      | Yes     | No   |
 
-> _This is a manual list and may not be accurate. \
-> There may be regional providers that are not accessible from everywhere. \
-> Also, the DNS IP of the provider may change depending on the region. \
-> \* These are allegedly non-filtering and non-logging providers. \
+> _This is a manual list and may not be accurate. <br>
+> There may be regional providers that are not accessible from everywhere. <br>
+> Also, the DNS IP of the provider may change depending on the region. <br>
+> \* These are allegedly non-filtering and non-logging providers. <br>
 > \* It is considered Yes if not stated otherwise._
 
 <BR>
 
 ## DEFAULT DOMAIN LIST
 
-- [X] This list is based on some of the top domains from [**Cloudflare Domain Rankings**](https://radar.cloudflare.com/domains)
-- [X] It is used for testing the DNS providers.
+- ✅ This list is based on some of the top domains from [**Cloudflare Domain Rankings**](https://radar.cloudflare.com/domains)
+- ✅ It is used for testing the DNS providers.
 
 | Domain |
 | :---: |
@@ -84,10 +84,10 @@
 ## REQUIREMENTS
 
 - ⛏️ **`Dig`** tool
-  - If using **APT**: `apt install dnsutils`
-  - If using **YUM / DNF**: `dnf install bind-utils`
-  - If using **APK**: `apk add bind-tools`
-  - If using **PACMAN**: `pacman -S bind-tools`
+    - If using **APT**: `apt install dnsutils`
+    - If using **YUM / DNF**: `dnf install bind-utils`
+    - If using **APK**: `apk add bind-tools`
+    - If using **PACMAN**: `pacman -S bind-tools`
 
 <BR>
 
@@ -97,17 +97,19 @@
 $ ./dnsperftest.sh [IP version]
 ```
 
-> **`IP version`:**
-> - **`ipv4`** - _(default)_ For IPv4 addresses only
-> - **`ipv6`** - For IPv6 addresses only
-> - **`all`** - For IPv4 and IPv6 addresses
+**`[IP version]`:** <br>
+🔹 **`ipv4`** - _(default)_ For IPv4 addresses only
+
+🔹 **`ipv6`** - For IPv6 addresses only
+
+🔹 **`all`** - For IPv4 and IPv6 addresses
 
 <BR>
 
 ## UTILIZATION
 
 **1\.** Download the script and save it on your test system.
-``` 
+```
 wget -q https://raw.githubusercontent.com/diasdmhub/scripts/master/dnsperftest/dnsperftest.sh
 ```
 
@@ -183,6 +185,7 @@ OpenNIC               217.160.70.42        233 ms  231 ms  232 ms  235 ms  259 m
 DNSforFamily          78.47.64.161         237 ms  247 ms  242 ms  237 ms  245 ms  240 ms  241 ms  389 ms  242 ms  241 ms  256.10 ms
 Yandex                77.88.8.1            266 ms  278 ms  266 ms  276 ms  277 ms  278 ms  271 ms  287 ms  269 ms  275 ms  274.30 ms
 Yandex                77.88.8.8            273 ms  276 ms  272 ms  277 ms  278 ms  275 ms  273 ms  273 ms  280 ms  281 ms  275.80 ms
+Yandex                77.88.8.8            273 ms  276 ms  272 ms  277 ms  278 ms  275 ms  273 ms  273 ms  280 ms  281 ms  275.80 ms
 Quad101               101.102.103.104      306 ms  309 ms  308 ms  306 ms  312 ms  299 ms  302 ms  299 ms  306 ms  364 ms  311.10 ms
 SafeSurfer            104.155.237.225      304 ms  304 ms  304 ms  308 ms  355 ms  307 ms  346 ms  309 ms  305 ms  308 ms  315.00 ms
 Mullvad               194.242.2.2          155 ms  159 ms  156 ms  1000 ms 155 ms  157 ms  156 ms  158 ms  157 ms  1000 ms 325.30 ms
@@ -198,11 +201,11 @@ Quad101               101.101.101.101      318 ms  316 ms  345 ms  316 ms  508 m
 <BR>
 
 > ### _For Windows users using the Linux subsystem (WSL)_
-> 
+>
 > If you get a `$'\r': command not found` error, convert the file to a Linux-compatible line-end. Example:
 >
 > `tr -d '\15\32' < dnsperftest.sh > dnsperftest_win.sh`
->   
+>
 > Then run `bash ./dnsperftest_win.sh`
 
 <BR>
