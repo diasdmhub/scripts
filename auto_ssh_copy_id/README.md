@@ -1,6 +1,8 @@
+<h1 align="center">Auto SSH Copy Id Script</h1>
 <p align="center">
 <b>COPY A USER SSH PUBLIC KEY TO MULTIPLE HOSTS</b>
 </p>
+
 <BR>
 
 ## DOWNLOAD
@@ -11,10 +13,11 @@
 
 ## USAGE
 
-- <input type="checkbox" checked> All remote hosts in the list must use the same user and password :warning:
+- <input type="checkbox" checked> &#9888;&#65039; All remote hosts in the list must use the same user and password
+
 - <input type="checkbox" checked> Set up a list of hosts you wish to connect via SSH.
 
-    > By default, the host list uses the **`./hostlist.txt`** file
+    > By default, the host list uses the `./hostlist.txt` file
 
 - <input type="checkbox" checked> The list must use an IP address or domain name
 
@@ -31,36 +34,36 @@
 
 <BR>
 
-  
 ## REQUIREMENTS
 
 - **`sshpass`** package
-  - **APT** - `apt install sshpass`
-  - **DNF** - `dnf install sshpass`
+    - **APT** - `apt install sshpass`
+    - **DNF** - `dnf install sshpass`
 
 - **`ssh-copy-id`** script
-  - Usually comes with **OpenSSH** or **Dropbear**
+    - Usually comes with **OpenSSH** or **Dropbear**
 
 - Local host priviledge required
-  - Use `sudo` if not using **_root_**
+    - Use `sudo` if not using **_root_**
 - Public key must be set for local user
-  - Example: `ssh-keygen -b 4096 -t rsa`
+    - Example: `ssh-keygen -b 4096 -t rsa`
 
 <BR>
-
 
 ## SYNTAX
 
 > Pass arguments at command line
+
 ```bash
-  ./auto_ssh_copy_id.sh [local user] [remote user] [remote pass] [path to host list] [path to local pub key]
+./auto_ssh_copy_id.sh [local user] [remote user] [remote pass] [path to host list] [path to local pub key]
 ```
 
 **OR**
 
 > Pass arguments interactively
+
 ```bash
-  $ /home/dan/github/scripts/auto_ssh_copy_id/auto_ssh_copy_id.sh
+$ /home/dan/github/scripts/auto_ssh_copy_id/auto_ssh_copy_id.sh
 LOCAL USER FOR REMOTE ACCESS: [local user]
 REMOTE USER: [remote user]
 REMOTE USER PASSWORD: [remote user pass]
@@ -69,7 +72,6 @@ LOCAL USER PUB KEY PATH (default ~/.ssh/id_rsa.pub): /path/to/public/key.pub
 ```
 
 <BR>
-
 
 ## EXAMPLE
 

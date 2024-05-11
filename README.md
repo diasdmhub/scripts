@@ -1,6 +1,6 @@
 <h1 align="center">Scripts</h1>
 <p align="center">
-  <b>Simple scripts for simple tasks.</b>
+  <b>Graceful instructions for efficient objectives</b>
 </p>
 
 <BR>
