@@ -4,7 +4,8 @@
 
 <BR>
 
-A simple yet effective RouterOS script that updates a [**deSEC.io**](https://desec.io) domain name with the latest WAN IPv4 and IPv6 addresses. It uses [**deSEC's API**](https://desec.readthedocs.io/en/latest) to push updates.
+A simple yet effective RouterOS script that updates a [**deSEC.io**](https://desec.io) domain name with the latest WAN IPv4 and IPv6 addresses. It uses [**deSEC's API**](https://desec.readthedocs.io/en/latest) to push update
+s.
 
 <BR>
 
@@ -14,23 +15,26 @@ A simple yet effective RouterOS script that updates a [**deSEC.io**](https://des
 
 <BR>
 
-> [▶️ deSEC DDNS script for Shell](./desec_ddns.sh) \
+> [▶️ deSEC DDNS script for Shell](./desec_ddns.sh)
+
 > _Added for future usage. Mainly for limited Linux OS._
 
 <BR>
 
 ## REQUIREMENTS
 
-- [X] Mikrotik device that supports scripts
-  > The script may require recent RouterOS to work properly. Make sure you have the latest updates installed before you begin.
-- [X] Active DNS domain name at [deSEC.io](https://desec.io).
-  > The deSEC DNS name must have at least an appropriate IPv4 or IPv6 address before the script is run.
-- [X] A valid token for the deSEC domain name.
+- ✔️ Mikrotik device that supports scripts <br>
+> The script may require recent RouterOS to work properly. Make sure you have the latest updates installed before you begin. <br>
+
+- ✔️ Active DNS domain name at [deSEC.io](https://desec.io) <br>
+> The deSEC DNS name must have at least an appropriate IPv4 or IPv6 address before the script is run.
+
+- ✔️ A valid token for the deSEC domain name
 
 <BR>
 
-> **For Shell**
-> - [ ] `Curl`, `Dig`, `Awk`, `Logger`
+- > **For Shell** <br>
+☑️ `Curl`, `Dig`, `Awk`, `Logger`
 
 <BR>
 
@@ -72,11 +76,11 @@ A simple yet effective RouterOS script that updates a [**deSEC.io**](https://des
 #### WINBOX:
 
 - Go to `System` > `Scripts`
-  - Select the `Add` (➕) button
+- Select the `Add` (➕) button
     - `Name` the script `deSEC_DDNS`
-	- Select policies `read` and `test`
-	- Copy the script contents into the `source` box
-	- Add a comment if you whish, and select `OK`
+    - Select policies `read` and `test`
+    - Copy the script contents into the `source` box
+    - Add a comment if you whish, and select `OK`
 
 ![Add deSEC DDNS Script](./image/desec_ddns_winbox_script.png)
 
