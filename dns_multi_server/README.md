@@ -1,3 +1,12 @@
+---
+title: DNS Multi Server script
+summary: Query a domain name IPv4 from a DNS server list
+authors:
+    - Diasdm
+date:
+some_url: https://github.com/diasdmhub/scripts/
+---
+
 <h1 align="center">DNS Multi Server script</h1>
 <p align="center">
 <b>QUERY A DOMAIN NAME IPv4 FROM A DNS SERVER LIST</b>
@@ -14,37 +23,40 @@
 ## REQUIREMENTS
 
 - ⛏️ **`Dig`** tool
-  - If using **APT**: `apt install dnsutils`
-  - If using **YUM / DNF**: `dnf install bind-utils`
-  - If using **APK**: `apk add bind-tools`
-  - If using **PACMAN**: `pacman -S bind-tools`
+    - If using **APT**: `apt install dnsutils`
+    - If using **YUM / DNF**: `dnf install bind-utils`
+    - If using **APK**: `apk add bind-tools`
+    - If using **PACMAN**: `pacman -S bind-tools`
 
 <BR>
 
 ## DNS PROVIDER LIST
 
-- [X] DNS servers separated by lines.
-- [X] The `#` character is the delimiter between the DNS provider IP and its name, `[IPaddress]#[ProviderName]`.
-  - Do not include spaces in the provider name.
-  - There is a sample list named _`dnslist`_ in this repository.
-- [X] The script uses the _`./dnslist`_ filename by default.
-  - To change the DNS list, pass the absolute or relative file path as the second argument.
+✔️ DNS servers separated by lines.
 
-> [!NOTE]
-> **It is recommended to set up your own list based on your location and your ISP.**
+✔️ The `#` character is the delimiter between the DNS provider IP and its name, `[IPaddress]#[ProviderName]`.
+    - Do not include spaces in the provider name.
+    - There is a sample list named _`dnslist`_ in this repository.
+
+✔️ The script uses the _`./dnslist`_ filename by default.
+    - To change the DNS list, pass the absolute or relative file path as the second argument.
+
+> ℹ️ **It is recommended to set up your own list based on your location and your ISP.**
 
 <BR>
 
 ## SYNTAX
 
-> Domain and list as arguments
+<input type="checkbox" disabled checked> Domain and list as arguments
+
 ```bash
 $ ./dns_multi_server.sh [domain] [dnslist path]
 ```
 
 **OR**
 
-> Domain and list asked if no arguments are passed
+<input type="checkbox" disabled checked> Domain and list asked if no arguments are passed
+
 ```bash
 $ ./dns_multi_server.sh
 DOMAIN NAME: github.com
@@ -56,10 +68,10 @@ DNS LIST PATH (default = './dnslist'): ./your_list.txt
 ## EXAMPLE
 
 ```bash
-$ ./dns_multi_server.sh 
+$ ./dns_multi_server.sh
 
 DOMAIN NAME: github.com
-DNS LIST PATH (default = './dnslist'): 
+DNS LIST PATH (default = './dnslist'):
 
 |-----------------------------------------------------------------|
 | Domain: github.com                                              |
