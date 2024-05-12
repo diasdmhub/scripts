@@ -1,0 +1,121 @@
+site_name: Diasdm Scripts
+site_url: http://192.168.7.125
+
+# Left navigation menu
+nav:
+  - Home: README.md
+  - Scripts:
+    - Auto SSH Copy ID: ./auto_ssh_copy_id/README.md
+    - DNS Multi Server: ./dns_multi_server/README.md
+    - deSEC DDNS: ./mt_desec_ddns/README.md
+    - DNS Performance Test: ./dnsperftest/README.md
+    - Update system: ./update_pkg/README.md
+
+
+# Theme settings
+theme:
+
+  # Use "Material for MkDocs" plugin if installed
+  name: material
+  features:
+    # Search suggestion for the likeliest last word
+    - search.suggest
+    # Search results highlight
+    - search.highlight
+    # Option to share search results
+    - search.share
+    # Added footer page navigation
+    - navigation.footer
+    # Added view code contents right to the page title
+    - content.action.view
+
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.path
+    - toc.follow
+    # Integrates page anchors to navigation content left menu
+    - toc.integrate
+    # Back to top rendered button
+    - navigation.top
+
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: brown
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: lime
+      toggle:
+        icon: material/brightness-5
+        name: Switch to automatic mode
+
+  # Header top right git repository information icon
+  icon:
+    repo: fontawesome/brands/github
+
+  # Uncomment to set font to "false" and prevent typefaces from being loaded from Google Fonts
+  # Unecessary if plugin "privacy" is enabled
+#  font: false
+
+
+
+# Extra configurations
+extra:
+
+  # Footer botton left "Made with Material for MkDocs" notice
+  generator: true
+
+  # Consent message for cookies
+  consent:
+    title: Cookie consent
+    actions:
+      - accept
+      - reject
+    description: >-
+      Cookies are used to recognize repeated visits and preferences, as well
+      as to measure the effectiveness of our documentation and whether users
+      find what they're searching for.
+
+
+# Footer botton left copyright notice above "Made with"
+copyright: >
+  by diasdm
+  <BR><a href="#__consent">* Change cookie settings</a>
+
+# Header top right git repository information and link
+repo_name: diasdmhub/scripts
+repo_url: https://github.com/diasdmhub/scripts
+
+
+
+# Plugins to extend MkDocs
+plugins:
+  # Optimize the site offline-capable so you can distribute the site directory
+  - offline
+  # Download external assets when building it to make the project free of requests to external services
+  - privacy
+  # Adds seach
+  - search
+
+# Enables admonitions, allows to make them collapsible and to nest arbitrary content inside admonitions
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - toc:
+      toc_depth: 2
