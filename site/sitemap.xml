@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>http://192.168.7.125/index.html</loc>
+         <lastmod>2024-05-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://192.168.7.125/auto_ssh_copy_id/index.html</loc>
+         <lastmod>2024-05-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://192.168.7.125/dns_multi_server/index.html</loc>
+         <lastmod>2024-05-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://192.168.7.125/dnsperftest/index.html</loc>
+         <lastmod>2024-05-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://192.168.7.125/mt_desec_ddns/index.html</loc>
+         <lastmod>2024-05-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>http://192.168.7.125/update_pkg/index.html</loc>
+         <lastmod>2024-05-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+</urlset>

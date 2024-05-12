@@ -1,0 +1,1165 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="http://192.168.7.125/dnsperftest/index.html">
+      
+      
+        <link rel="prev" href="../mt_desec_ddns/index.html">
+      
+      
+        <link rel="next" href="../update_pkg/index.html">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+    
+    
+      
+        <title>DNS Performance Test - Diasdm Scripts</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.66ac8b77.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="../assets/external/unpkg.com/iframe-worker/shim.js"></script>
+      
+    
+    
+      
+        
+        
+        
+        <link rel="stylesheet" href="../assets/external/fonts.googleapis.com/css.49ea35f2.css">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#download" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Diasdm Scripts" class="md-header__button md-logo" aria-label="Diasdm Scripts" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Diasdm Scripts
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DNS Performance Test
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="lime"  aria-label="Switch to automatic mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to automatic mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-2.69L23.31 12 20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/diasdmhub/scripts" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    diasdmhub/scripts
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Diasdm Scripts" class="md-nav__button md-logo" aria-label="Diasdm Scripts" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Diasdm Scripts
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/diasdmhub/scripts" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    diasdmhub/scripts
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Scripts
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Scripts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../auto_ssh_copy_id/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Auto SSH Copy ID
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dns_multi_server/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DNS Multi Server
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mt_desec_ddns/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    deSEC DDNS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    DNS Performance Test
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="index.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    DNS Performance Test
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#download" class="md-nav__link">
+    <span class="md-ellipsis">
+      DOWNLOAD
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-dns-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      DEFAULT DNS LIST
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#default-domain-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      DEFAULT DOMAIN LIST
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      REQUIREMENTS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      SYNTAX
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#utilization" class="md-nav__link">
+    <span class="md-ellipsis">
+      UTILIZATION
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      EXAMPLE
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../update_pkg/index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Update system
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+    
+      
+    
+    <a href="https://github.com/diasdmhub/scripts/raw/master/docs/dnsperftest/README.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.15 8.15 0 0 1-1.23-2Z"/></svg>
+    </a>
+  
+
+
+<h1 align="center">DNS Performance Test</h1>
+<p align="center">
+  <b>Shell script to test the performance of the most popular DNS providers so you can test from your own location</b>
+</p>
+
+<p><BR></p>
+<h2 id="download">DOWNLOAD</h2>
+<p><a href="dnsperftest.sh">▶️ dnsperftest.sh</a></p>
+<p><BR></p>
+<h2 id="default-dns-list">DEFAULT DNS LIST</h2>
+<ul>
+<li>✅ The list is based on the <a href="https://adguard-dns.io/kb/general/dns-providers"><strong>AdGuard DNS providers list</strong></a>.</li>
+<li>ℹ️ <strong>It is recommended that you change this list to reflect your preferred providers.</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>IPv4 DNS Provider</th>
+<th style="text-align: center;">IP 1</th>
+<th style="text-align: center;">IP 2</th>
+<th style="text-align: center;">Filter*</th>
+<th style="text-align: center;">Log*</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AdGuard</td>
+<td style="text-align: center;">94.140.14.140</td>
+<td style="text-align: center;">94.140.14.141</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Ali</td>
+<td style="text-align: center;">223.5.5.5</td>
+<td style="text-align: center;">223.6.6.6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>BebasDNS</td>
+<td style="text-align: center;">103.87.68.193</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Cisco OpenDNS</td>
+<td style="text-align: center;">208.67.222.2</td>
+<td style="text-align: center;">208.67.220.2</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>CleanBrowsing</td>
+<td style="text-align: center;">185.228.168.168</td>
+<td style="text-align: center;">185.228.169.168</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>CloudFlare</td>
+<td style="text-align: center;">1.1.1.1</td>
+<td style="text-align: center;">1.0.0.1</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Comodo</td>
+<td style="text-align: center;">8.26.56.26</td>
+<td style="text-align: center;">8.20.247.20</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>ControlD</td>
+<td style="text-align: center;">76.76.2.0</td>
+<td style="text-align: center;">76.76.10.0</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>DNS.SB</td>
+<td style="text-align: center;">185.222.222.222</td>
+<td style="text-align: center;">45.11.45.11</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>DNSPod</td>
+<td style="text-align: center;">119.29.29.29</td>
+<td style="text-align: center;">119.28.28.28</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>DNSWatchGO</td>
+<td style="text-align: center;">54.174.40.213</td>
+<td style="text-align: center;">52.3.100.184</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Dyn</td>
+<td style="text-align: center;">216.146.35.35</td>
+<td style="text-align: center;">216.146.36.36</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Freenom</td>
+<td style="text-align: center;">80.80.80.80</td>
+<td style="text-align: center;">80.80.81.81</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Google</td>
+<td style="text-align: center;">8.8.8.8</td>
+<td style="text-align: center;">8.8.4.4</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Hurricane Electric</td>
+<td style="text-align: center;">74.82.42.42</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Mullvad</td>
+<td style="text-align: center;">194.242.2.2</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Neustar</td>
+<td style="text-align: center;">156.154.70.1</td>
+<td style="text-align: center;">156.154.71.1</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>dns0.eu</td>
+<td style="text-align: center;">193.110.81.0</td>
+<td style="text-align: center;">185.253.5.0</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Quad9</td>
+<td style="text-align: center;">9.9.9.10</td>
+<td style="text-align: center;">149.112.112.10</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Safe DNS</td>
+<td style="text-align: center;">195.46.39.39</td>
+<td style="text-align: center;">195.46.39.40</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>360 Secure DNS</td>
+<td style="text-align: center;">101.226.4.6</td>
+<td style="text-align: center;">218.30.118.6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Verisign</td>
+<td style="text-align: center;">64.6.64.6</td>
+<td style="text-align: center;">64.6.65.6</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Safe Surfer</td>
+<td style="text-align: center;">104.155.237.225</td>
+<td style="text-align: center;">104.197.28.121</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>CIRA Canadian Shield</td>
+<td style="text-align: center;">149.112.121.10</td>
+<td style="text-align: center;">149.112.122.10</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Comss.one</td>
+<td style="text-align: center;">193.17.47.1</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>CZ.NIC ODVR</td>
+<td style="text-align: center;">76.76.2.22</td>
+<td style="text-align: center;">185.43.135.1</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>DNS for Family</td>
+<td style="text-align: center;">94.130.180.225</td>
+<td style="text-align: center;">78.47.64.161</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Fondation Restena</td>
+<td style="text-align: center;">76.76.2.22</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>114DNS</td>
+<td style="text-align: center;">114.114.114.114</td>
+<td style="text-align: center;">114.114.115.115</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>LibreDNS</td>
+<td style="text-align: center;">88.198.92.222</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>OpenNIC DNS</td>
+<td style="text-align: center;">217.160.70.42</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>Quad101</td>
+<td style="text-align: center;">101.101.101.101</td>
+<td style="text-align: center;">101.102.103.104</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>Yandex</td>
+<td style="text-align: center;">77.88.8.8</td>
+<td style="text-align: center;">77.88.8.1</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">Yes</td>
+</tr>
+<tr>
+<td>AhaDNS</td>
+<td style="text-align: center;">5.2.75.75</td>
+<td style="text-align: center;">45.67.219.208</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr>
+<td>DNS Forge</td>
+<td style="text-align: center;">176.9.93.198</td>
+<td style="text-align: center;">176.9.1.117</td>
+<td style="text-align: center;">Yes</td>
+<td style="text-align: center;">No</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><em>This is a manual list and may not be accurate. <br>
+There may be regional providers that are not accessible from everywhere. <br>
+Also, the DNS IP of the provider may change depending on the region. <br>
+* These are allegedly non-filtering and non-logging providers. <br>
+* It is considered Yes if not stated otherwise.</em></p>
+</blockquote>
+<p><BR></p>
+<h2 id="default-domain-list">DEFAULT DOMAIN LIST</h2>
+<ul>
+<li>✅ This list is based on some of the top domains from <a href="https://radar.cloudflare.com/domains"><strong>Cloudflare Domain Rankings</strong></a></li>
+<li>✅ It is used for testing the DNS providers.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Domain</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">google.com</td>
+</tr>
+<tr>
+<td style="text-align: center;">facebook.com</td>
+</tr>
+<tr>
+<td style="text-align: center;">apple.com</td>
+</tr>
+<tr>
+<td style="text-align: center;">microsoft.com</td>
+</tr>
+<tr>
+<td style="text-align: center;">amazon.com</td>
+</tr>
+<tr>
+<td style="text-align: center;">youtube.com</td>
+</tr>
+<tr>
+<td style="text-align: center;">instagram.com</td>
+</tr>
+<tr>
+<td style="text-align: center;">reddit.com</td>
+</tr>
+<tr>
+<td style="text-align: center;">twitter.com</td>
+</tr>
+<tr>
+<td style="text-align: center;">whatsapp.com</td>
+</tr>
+</tbody>
+</table>
+<p><BR></p>
+<h2 id="requirements">REQUIREMENTS</h2>
+<ul>
+<li>⛏️ <strong><code>Dig</code></strong> tool<ul>
+<li>If using <strong>APT</strong>: <code>apt install dnsutils</code></li>
+<li>If using <strong>YUM / DNF</strong>: <code>dnf install bind-utils</code></li>
+<li>If using <strong>APK</strong>: <code>apk add bind-tools</code></li>
+<li>If using <strong>PACMAN</strong>: <code>pacman -S bind-tools</code></li>
+</ul>
+</li>
+</ul>
+<p><BR></p>
+<h2 id="syntax">SYNTAX</h2>
+<div class="highlight"><pre><span></span><code>$<span class="w"> </span>./dnsperftest.sh<span class="w"> </span><span class="o">[</span>IP<span class="w"> </span>version<span class="o">]</span>
+</code></pre></div>
+<p><strong><code>[IP version]</code>:</strong> <br>
+🔹 <strong><code>ipv4</code></strong> - <em>(default)</em> For IPv4 addresses only</p>
+<p>🔹 <strong><code>ipv6</code></strong> - For IPv6 addresses only</p>
+<p>🔹 <strong><code>all</code></strong> - For IPv4 and IPv6 addresses</p>
+<p><BR></p>
+<h2 id="utilization">UTILIZATION</h2>
+<p><strong>1.</strong> Download the script and save it on your test system.
+<div class="highlight"><pre><span></span><code>wget -q https://raw.githubusercontent.com/diasdmhub/scripts/master/dnsperftest/dnsperftest.sh
+</code></pre></div></p>
+<p><strong>2.</strong> Give the script execution permission.
+<div class="highlight"><pre><span></span><code>chmox +x dnsperftest.sh
+</code></pre></div></p>
+<p><strong>3.</strong> Run the script. If no arguments are given, it uses <code>ipv4</code> as the default argument.
+<div class="highlight"><pre><span></span><code>./dnsperftest.sh
+</code></pre></div></p>
+<blockquote>
+<p><strong>You can sort the result by piping it to <code>sort</code> as in the example below.</strong></p>
+</blockquote>
+<p><BR></p>
+<h2 id="example">EXAMPLE</h2>
+<div class="highlight"><pre><span></span><code># /jffs/scripts/dnsperftest.sh | sort -k 23 -n
+
+                                           test1   test2   test3   test4   test5   test6   test7   test8   test9   test10  Average
+SafeDNS               195.46.39.40         18 ms   18 ms   17 ms   17 ms   16 ms   18 ms   18 ms   17 ms   18 ms   17 ms   17.40 ms
+Neustar               156.154.70.1         16 ms   17 ms   18 ms   19 ms   18 ms   18 ms   17 ms   18 ms   17 ms   21 ms   17.90 ms
+Verisign              64.6.64.6            18 ms   20 ms   19 ms   17 ms   19 ms   19 ms   17 ms   19 ms   16 ms   19 ms   18.30 ms
+Dyn                   216.146.36.36        19 ms   18 ms   18 ms   17 ms   19 ms   18 ms   20 ms   22 ms   17 ms   20 ms   18.80 ms
+CloudFlare            1.1.1.1              19 ms   16 ms   21 ms   17 ms   22 ms   20 ms   20 ms   17 ms   19 ms   20 ms   19.10 ms
+AdGuard               94.140.14.141        21 ms   18 ms   20 ms   21 ms   20 ms   19 ms   18 ms   17 ms   21 ms   17 ms   19.20 ms
+Neustar               156.154.71.1         19 ms   17 ms   19 ms   19 ms   19 ms   18 ms   21 ms   21 ms   21 ms   18 ms   19.20 ms
+Verisign              64.6.65.6            18 ms   18 ms   21 ms   19 ms   19 ms   23 ms   21 ms   22 ms   21 ms   21 ms   20.30 ms
+CloudFlare            1.0.0.1              21 ms   19 ms   21 ms   20 ms   16 ms   26 ms   25 ms   21 ms   19 ms   19 ms   20.70 ms
+CleanBrowsing         185.228.168.168      19 ms   20 ms   28 ms   21 ms   19 ms   20 ms   20 ms   21 ms   20 ms   20 ms   20.80 ms
+ControlD              76.76.10.0           23 ms   20 ms   32 ms   19 ms   21 ms   21 ms   21 ms   21 ms   21 ms   22 ms   22.10 ms
+ControlD              76.76.2.0            21 ms   22 ms   25 ms   22 ms   22 ms   22 ms   24 ms   22 ms   21 ms   23 ms   22.40 ms
+FondationRestena      76.76.2.22           138 ms  20 ms   17 ms   21 ms   18 ms   20 ms   17 ms   18 ms   17 ms   18 ms   30.40 ms
+Quad9                 9.9.9.10             18 ms   68 ms   47 ms   32 ms   17 ms   19 ms   21 ms   73 ms   20 ms   18 ms   33.30 ms
+CZ.NICODVR            76.76.2.22           137 ms  17 ms   21 ms   18 ms   19 ms   20 ms   17 ms   70 ms   19 ms   24 ms   36.20 ms
+CiscoOpenDNS          208.67.222.2         22 ms   17 ms   23 ms   129 ms  21 ms   19 ms   19 ms   71 ms   21 ms   20 ms   36.20 ms
+Google                8.8.4.4              19 ms   20 ms   24 ms   20 ms   21 ms   135 ms  17 ms   67 ms   23 ms   23 ms   36.90 ms
+SafeDNS               195.46.39.39         17 ms   19 ms   19 ms   19 ms   25 ms   20 ms   16 ms   135 ms  18 ms   140 ms  42.80 ms
+Quad9                 149.112.112.10       17 ms   258 ms  19 ms   33 ms   20 ms   20 ms   31 ms   19 ms   18 ms   16 ms   45.10 ms
+[/etc/resolv.conf]    127.0.0.1            1 ms    64 ms   128 ms  64 ms   24 ms   23 ms   67 ms   76 ms   1 ms    24 ms   47.20 ms
+CiscoOpenDNS          208.67.220.2         75 ms   18 ms   23 ms   124 ms  19 ms   22 ms   21 ms   76 ms   72 ms   26 ms   47.60 ms
+Dyn                   216.146.35.35        19 ms   18 ms   17 ms   16 ms   1000 ms 17 ms   17 ms   132 ms  17 ms   19 ms   127.20 ms
+AdGuard               94.140.14.140        17 ms   21 ms   480 ms  21 ms   668 ms  19 ms   19 ms   19 ms   22 ms   23 ms   130.90 ms
+CleanBrowsing         185.228.169.168      135 ms  139 ms  132 ms  130 ms  129 ms  129 ms  134 ms  132 ms  134 ms  136 ms  133.00 ms
+HurricaneElectric     74.82.42.42          130 ms  130 ms  154 ms  127 ms  132 ms  129 ms  128 ms  143 ms  136 ms  133 ms  134.20 ms
+Ali                   223.6.6.6            139 ms  141 ms  144 ms  145 ms  142 ms  141 ms  142 ms  143 ms  147 ms  146 ms  143.00 ms
+Comodo                8.26.56.26           158 ms  128 ms  158 ms  129 ms  130 ms  160 ms  163 ms  130 ms  136 ms  156 ms  144.80 ms
+Ali                   223.5.5.5            147 ms  148 ms  140 ms  145 ms  143 ms  148 ms  144 ms  145 ms  144 ms  150 ms  145.40 ms
+Comodo                8.20.247.20          159 ms  131 ms  131 ms  131 ms  160 ms  132 ms  157 ms  154 ms  164 ms  141 ms  146.00 ms
+CIRACanadianShield    149.112.122.10       152 ms  152 ms  158 ms  153 ms  154 ms  149 ms  155 ms  151 ms  151 ms  153 ms  152.80 ms
+SafeSurfer            104.197.28.121       154 ms  151 ms  156 ms  158 ms  154 ms  151 ms  157 ms  155 ms  160 ms  151 ms  154.70 ms
+DNSWatchGO            52.3.100.184         159 ms  153 ms  156 ms  160 ms  154 ms  159 ms  151 ms  157 ms  160 ms  161 ms  157.00 ms
+CIRACanadianShield    149.112.121.10       164 ms  161 ms  156 ms  154 ms  154 ms  163 ms  155 ms  160 ms  156 ms  155 ms  157.80 ms
+DNSWatchGO            54.174.40.213        160 ms  162 ms  160 ms  162 ms  157 ms  161 ms  158 ms  158 ms  152 ms  151 ms  158.10 ms
+Google                8.8.8.8              75 ms   1000 ms 81 ms   72 ms   75 ms   53 ms   56 ms   74 ms   52 ms   71 ms   160.90 ms
+AhaDNS                45.67.219.208        190 ms  190 ms  188 ms  185 ms  187 ms  185 ms  190 ms  189 ms  191 ms  188 ms  188.30 ms
+Freenom               80.80.81.81          179 ms  178 ms  202 ms  177 ms  212 ms  180 ms  239 ms  191 ms  181 ms  221 ms  196.00 ms
+Freenom               80.80.80.80          181 ms  181 ms  212 ms  181 ms  221 ms  178 ms  266 ms  177 ms  177 ms  226 ms  200.00 ms
+DNS.SB                185.222.222.222      230 ms  224 ms  223 ms  222 ms  232 ms  227 ms  230 ms  242 ms  224 ms  229 ms  228.30 ms
+DNSPod                119.28.28.28         230 ms  231 ms  223 ms  231 ms  229 ms  225 ms  229 ms  231 ms  231 ms  231 ms  229.10 ms
+DNS.SB                45.11.45.11          231 ms  233 ms  225 ms  233 ms  228 ms  238 ms  232 ms  245 ms  232 ms  227 ms  232.40 ms
+dns0.eu               185.253.5.0          232 ms  218 ms  238 ms  234 ms  223 ms  303 ms  217 ms  227 ms  220 ms  230 ms  234.20 ms
+Comss.one             193.17.47.1          238 ms  226 ms  241 ms  229 ms  233 ms  235 ms  233 ms  236 ms  235 ms  241 ms  234.70 ms
+CZ.NICODVR            185.43.135.1         227 ms  241 ms  230 ms  236 ms  239 ms  236 ms  240 ms  228 ms  235 ms  237 ms  234.90 ms
+LibreDNS              88.198.92.222        241 ms  228 ms  242 ms  242 ms  247 ms  238 ms  243 ms  231 ms  236 ms  236 ms  238.40 ms
+DNSForge              176.9.1.117          237 ms  237 ms  251 ms  231 ms  233 ms  239 ms  236 ms  253 ms  242 ms  243 ms  240.20 ms
+DNSForge              176.9.93.198         234 ms  237 ms  229 ms  236 ms  243 ms  241 ms  245 ms  255 ms  238 ms  245 ms  240.30 ms
+DNSforFamily          94.130.180.225       229 ms  244 ms  238 ms  228 ms  245 ms  240 ms  242 ms  261 ms  237 ms  248 ms  241.20 ms
+AhaDNS                5.2.75.75            244 ms  238 ms  239 ms  245 ms  248 ms  240 ms  244 ms  237 ms  239 ms  243 ms  241.70 ms
+OpenNIC               217.160.70.42        233 ms  231 ms  232 ms  235 ms  259 ms  228 ms  228 ms  292 ms  233 ms  285 ms  245.60 ms
+DNSforFamily          78.47.64.161         237 ms  247 ms  242 ms  237 ms  245 ms  240 ms  241 ms  389 ms  242 ms  241 ms  256.10 ms
+Yandex                77.88.8.1            266 ms  278 ms  266 ms  276 ms  277 ms  278 ms  271 ms  287 ms  269 ms  275 ms  274.30 ms
+Yandex                77.88.8.8            273 ms  276 ms  272 ms  277 ms  278 ms  275 ms  273 ms  273 ms  280 ms  281 ms  275.80 ms
+Quad101               101.102.103.104      306 ms  309 ms  308 ms  306 ms  312 ms  299 ms  302 ms  299 ms  306 ms  364 ms  311.10 ms
+SafeSurfer            104.155.237.225      304 ms  304 ms  304 ms  308 ms  355 ms  307 ms  346 ms  309 ms  305 ms  308 ms  315.00 ms
+Mullvad               194.242.2.2          155 ms  159 ms  156 ms  1000 ms 155 ms  157 ms  156 ms  158 ms  157 ms  1000 ms 325.30 ms
+DNSPod                119.29.29.29         224 ms  231 ms  450 ms  232 ms  448 ms  561 ms  230 ms  486 ms  230 ms  435 ms  352.70 ms
+dns0.eu               193.110.81.0         218 ms  494 ms  467 ms  220 ms  259 ms  298 ms  477 ms  234 ms  351 ms  514 ms  353.20 ms
+360SecureDNS          101.226.4.6          347 ms  382 ms  342 ms  350 ms  348 ms  345 ms  357 ms  372 ms  349 ms  345 ms  353.70 ms
+Quad101               101.101.101.101      318 ms  316 ms  345 ms  316 ms  508 ms  314 ms  338 ms  339 ms  314 ms  500 ms  360.80 ms
+360SecureDNS          218.30.118.6         371 ms  370 ms  368 ms  366 ms  366 ms  367 ms  370 ms  370 ms  369 ms  369 ms  368.60 ms
+114DNS                114.114.115.115      358 ms  375 ms  385 ms  360 ms  374 ms  365 ms  375 ms  383 ms  373 ms  363 ms  371.10 ms
+114DNS                114.114.114.114      358 ms  382 ms  364 ms  366 ms  389 ms  372 ms  375 ms  372 ms  375 ms  375 ms  372.80 ms
+</code></pre></div>
+<p><BR></p>
+<blockquote>
+<h3 id="for-windows-users-using-the-linux-subsystem-wsl"><em>For Windows users using the Linux subsystem (WSL)</em></h3>
+<p>If you get a <code>$'\r': command not found</code> error, convert the file to a Linux-compatible line-end. Example:</p>
+<p><code>tr -d '\15\32' &lt; dnsperftest.sh &gt; dnsperftest_win.sh</code></p>
+<p>Then run <code>bash ./dnsperftest_win.sh</code></p>
+</blockquote>
+<p><BR></p>
+<h3 id="remarks">REMARKS</h3>
+<blockquote>
+<p><em>This script is forked from <a href="https://github.com/cleanbrowsing/dnsperftest">CleanBrowsing DNS Performance Test</a>.</em></p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../mt_desec_ddns/index.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: deSEC DDNS">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                deSEC DDNS
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../update_pkg/index.html" class="md-footer__link md-footer__link--next" aria-label="Next: Update system">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Update system
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      by diasdm <BR><a href="#__consent">* Change cookie settings</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+      <div class="md-consent" data-md-component="consent" id="__consent" hidden>
+        <div class="md-consent__overlay"></div>
+        <aside class="md-consent__inner">
+          <form class="md-consent__form md-grid md-typeset" name="consent">
+            
+
+
+  
+    
+  
+
+
+
+
+  
+
+<h4>Cookie consent</h4>
+<p>Cookies are used to recognize repeated visits and preferences, as well as to measure the effectiveness of our documentation and whether users find what they're searching for.</p>
+<input class="md-toggle" type="checkbox" id="__settings" checked>
+<div class="md-consent__settings">
+  <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
+    
+  </ul>
+</div>
+<div class="md-consent__controls">
+  
+    
+      <button class="md-button md-button--primary">Accept</button>
+    
+    
+    
+  
+    
+    
+      <button type="reset" class="md-button md-button--primary">Reject</button>
+    
+    
+  
+</div>
+          </form>
+        </aside>
+      </div>
+      <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["search.suggest", "search.highlight", "search.share", "navigation.footer", "content.action.view", "navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.path", "toc.follow", "toc.integrate", "navigation.top"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a7c05c9e.min.js"></script>
+      
+    
+  </body>
+</html>
