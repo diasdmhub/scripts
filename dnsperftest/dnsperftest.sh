@@ -40,6 +40,8 @@ PROVIDERSV4="
 194.242.2.2#Mullvad
 156.154.70.1#Neustar
 156.154.71.1#Neustar
+45.90.28.0#NextDNS
+45.90.30.0#NextDNS
 193.110.81.0#dns0.eu
 185.253.5.0#dns0.eu
 9.9.9.10#Quad9
@@ -78,16 +80,18 @@ PROVIDERSV4="
 
 # IPv6 DNS providers
 PROVIDERSV6="
-2606:4700:4700::1111#cloudflare-v6
-2001:4860:4860::8888#google-v6
-2620:fe::fe#quad9-v6
-2620:119:35::35#opendns-v6
-2a0d:2a00:1::1#cleanbrowsing-v6
-2a02:6b8::feed:0ff#yandex-v6
 2a00:5a60::ad1:0ff#adguard-v6
-2610:a1:1018::3#neustar-v6
+2a0d:2a00:1::1#cleanbrowsing-v6
+2606:4700:4700::1111#cloudflare-v6
 2607:f740:e633:deec::2#deSEC.io
 2607:f740:e00a:deec::2#deSEC.org
+2001:4860:4860::8888#google-v6
+2620:119:35::35#opendns-v6
+2620:fe::fe#quad9-v6
+2610:a1:1018::3#neustar-v6
+2a07:a8c0::#NextDNS
+2a07:a8c1::#NextDNS
+2a02:6b8::feed:0ff#yandex-v6
 "
 
 # Domains to test against. Duplicated domains are ok
