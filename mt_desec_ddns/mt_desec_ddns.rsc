@@ -62,7 +62,7 @@
 #	    :return "Interface -> $ifIPv6 <- has more than one global address"
 #	}
 # Using pick to select only the first available IPv6 global address
-    :local ifAdd [get number=[:pick [find where interface=$ifIPv6 global dynamic address] 0 1] value-name=address]
+    :local ifAdd [get number=[:pick [find where interface=$ifIPv6 global address] 0 1] value-name=address]
     :return [:toip6 [:pick $ifAdd 0 [:find $ifAdd "/" -1]]]
 }
 
