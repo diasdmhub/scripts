@@ -75,8 +75,8 @@ fi
 echo -e "\nUPDATING SYSTEM\n"
     sudo apt -y update
     sudo apt -y full-upgrade
-    sudo apt -y autoremove      # remove not required packages
-    sudo apt -y clean           # clears package archive cache
+    sudo apt -y --purge autoremove  # remove not required packages
+    sudo apt -y clean               # clears package archive cache
     sudo apt -y -f install
 
 
